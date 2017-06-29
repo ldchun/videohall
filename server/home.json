@@ -1,0 +1,32 @@
+jsonpback({
+	"tp": [
+		{
+			"name": "口袋电影",
+			"logo": "images/home/logo-kddy.jpg",
+			"sub": "知名电影博主 微博电影视频自媒体",
+			"bg": "images/home/bg-kddy.jpg",
+			"href": "case.html?uid=kddy"
+		},
+		{
+			"name": "独立鱼电影",
+			"logo": "images/home/logo-duliyu.jpg",
+			"sub": "承包你全年的电影片单，延长三倍的人生体验。有鱼叔，电影从未如此有趣。",
+			"bg": "images/home/bg-duliyu.jpg",
+			"href": "case.html?uid=duliyu"
+		},
+		{
+			"name": "电影小密探FilmMT",
+			"logo": "images/home/logo-xmt.jpg",
+			"sub": "回归电影本质，还原影视最真。探爷，一枚有态度的影视自媒体。",
+			"bg": "images/home/bg-xmt.jpg",
+			"href": "case.html?uid=xmt"
+		},
+		{
+			"name": "壹早电影",
+			"logo": "images/home/logo-yzdy.jpg",
+			"sub": "推荐全球好电影，热门短片以及最佳影评，每日票房数据等……",
+			"bg": "images/home/bg-yzdy.jpg",
+			"href": "case.html?uid=yzdy"
+		}
+	]
+});

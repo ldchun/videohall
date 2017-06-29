@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Cache-Control" content="no-transform,no-siteapp"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" id="viewportId"/>
+    <meta name="applicable-device" content="pc,mobile"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="description" content="必看榜单"/>
+    <meta name="keywords" content="必看榜单"/>
+    <title>必看榜单</title>
+    <!--<link type="image/x-icon" href="img/app.ico" rel="shortcut icon"/>-->
+    <link type="text/css" href="static/vendor/weui/weui.min.css" rel="stylesheet"/>
+    <link type="text/css" href="static/vendor/animate/animate.min.css" rel="stylesheet"/>
+    <link type="text/css" href="static/vendor/icomoon/style.css" rel="stylesheet"/>
+    <link type="text/css" href="css/bass.css" rel="stylesheet"/>
+    <link type="text/css" href="css/vh.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="sl-wrap vh-home">
+        <div class="sl-hd hd-style1">
+            <div class="slhd-title">
+                <a class="logo-box">
+                    <img src="img/logow.png" class="logo-img" alt="logo">
+                    <p class="logo-txt">让所有好电影与你不期而遇</p>
+                </a>
+            </div>
+        </div>
+        <div class="sl-bd nopadb">
+            <div class="tpcon maxw">
+                <ul class="tplist" id="tpListDiv">
+                    <li class="tpli" v-for="item in items">
+                        <a class="tp-link" v-bind:href="item.href">
+                            <img class="tpbg-img" v-bind:src="item.bg" alt="">
+                            <div class="overlay center-h">
+                                <span class="tpct">
+                                    <span class="tpct-hd">
+                                        <img class="tplogo-img" v-bind:src="item.logo" alt="logo">
+                                        <span class="tpct-tit">{{item.name}}</span>
+                                    </span>
+                                    <span class="tpct-sub">{{item.sub}}</span>
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="static/vendor/jquery/jquery-1.11.0.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="static/vendor/vue/vue.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="script/common.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="script/home.js" charset="UTF-8"></script>
+</body>
+</html>

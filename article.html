@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Cache-Control" content="no-transform,no-siteapp"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" id="viewportId"/>
+    <meta name="applicable-device" content="pc,mobile"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="description" content="必看榜单"/>
+    <meta name="keywords" content="必看榜单"/>
+    <title>必看榜单</title>
+    <!--<link type="image/x-icon" href="img/app.ico" rel="shortcut icon"/>-->
+    <link type="text/css" href="static/vendor/weui/weui.min.css" rel="stylesheet"/>
+    <link type="text/css" href="static/vendor/animate/animate.min.css" rel="stylesheet"/>
+    <link type="text/css" href="static/vendor/icomoon/style.css" rel="stylesheet"/>
+    <link type="text/css" href="css/bass.css" rel="stylesheet"/>
+    <link type="text/css" href="css/vh.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="sl-wrap vh-art">
+        <div class="sl-hd nav-fix">
+            <div class="slhd-con">
+                <a href="javascript:history.go(-1);" class="slhd-back"><i class="icon-arrow_back"></i></a>
+                <div class="slhd-title" id="hdTitle"></div>
+            </div>
+        </div>
+        <div class="sl-bd nopadb">
+            <div class="artcon" id="artCon">
+                <!--<object type="text/html" data="" class="art-html" id="artHtml"></object>-->
+                <iframe src="" class="art-html" id="artHtml" name="artFrame" frameborder="0" scrolling="yes"></iframe>
+                <a class="artpop-btn slhide" id='slideOpen'>
+                    <i class="icon-movie"></i><br/><span>提到的影片</span>
+                </a>
+            </div>
+            <div class="slidepanel slide-v slide-right" id="slidePanel">
+                <div class="artpop-hd">
+                    <span id="slideClose" class="artpop-close"><i class="icon-arrow_forward"></i></span>
+                </div>
+                <div class="artpop-bd">
+                    <div class="popbd-top">
+                        <div class="artpop-tit" id="artTitlePop"></div>
+                        <div class="artpop-tidao">
+                            <p>提到了</p>
+                            <div class="artpop-num">
+                                <em id="mvNumPop"></em><span>部片子</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popbd-mid">
+                        <div class="artpop-con panel-mv" id="artPopCon">
+                            <ul class="mv-list">
+                                <li class="mv-li" v-for="item in items">
+                                    <a class="mv-link clearfix" v-bind:href="item.mvhref">
+                                        <div class="pd-pic">
+                                            <img class="pd-img" v-bind:src="item.mvbg" alt="" v-show="(isString(item.mvbg)&&(item.mvbg!=''))">
+                                            <div class="mv-play">
+                                                <i class="icon-play_circle_outline" v-show="(isString(item.mvhref)&&(item.mvhref!=''))"></i>
+                                            </div>
+                                        </div>
+                                        <div class="pd-info">
+                                            <div class="pd-title">{{item.mvname}}</div>
+                                            <div class="pd-score">{{item.mvscore}}</div>
+                                            <div class="pd-tag">{{item.mvtag}}</div>
+                                            <div class="pd-time">{{item.mvtime}}</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slhide overlay slideover" id="slideOver"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="static/vendor/jquery/jquery-1.11.0.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="static/vendor/vue/vue.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="script/common.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="script/article.js" charset="UTF-8"></script>
+</body>
+</html>

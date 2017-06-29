@@ -1,0 +1,8 @@
+jsonpback({
+	"data": {
+		"accname": "独立鱼电影",
+		"arttit": "我找到了最适合用来[云养猫]的剧",
+		"arthref": "https://www.douban.com/note/626565310/?from=gallery_hot_post",
+		"mvnum": 1
+	}
+});

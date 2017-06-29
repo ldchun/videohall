@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Cache-Control" content="no-transform,no-siteapp"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" id="viewportId"/>
+    <meta name="applicable-device" content="pc,mobile"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="description" content="必看榜单"/>
+    <meta name="keywords" content="必看榜单"/>
+    <title>必看榜单</title>
+    <!--<link type="image/x-icon" href="img/app.ico" rel="shortcut icon"/>-->
+    <link type="text/css" href="static/vendor/weui/weui.min.css" rel="stylesheet"/>
+    <link type="text/css" href="static/vendor/animate/animate.min.css" rel="stylesheet"/>
+    <link type="text/css" href="static/vendor/icomoon/style.css" rel="stylesheet"/>
+    <link type="text/css" href="css/bass.css" rel="stylesheet"/>
+    <link type="text/css" href="css/vh.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="sl-wrap vh-video" id="vdVideo">
+        <div class="sl-hd nav-fix">
+            <div class="slhd-con maxw">
+                <a href="javascript:history.go(-1);" class="slhd-back"><i class="icon-arrow_back"></i></a>
+                <div class="slhd-title" id="hdTitle"></div>
+            </div>
+        </div>
+        <div class="sl-bd">
+            <div class="video-body maxw">
+                <!--内容-->
+                <div class="video-con slpadd-lf">
+                    <ul class="mv-list">
+                        <li class="mv-li" v-for="item in items">
+                            <a class="mv-link clearfix ckeffect" v-bind:href="item.mvhref">
+                                <div class="pd-pic">
+                                    <img class="pd-img" v-bind:src="item.mvbg" alt="" v-show="(isString(item.mvbg)&&(item.mvbg!=''))">
+                                    <div class="mv-play">
+                                        <i class="icon-play_circle_outline"></i>
+                                    </div>
+                                </div>
+                                <div class="pd-info">
+                                    <div class="pd-title">{{item.mvname}}</div>
+                                    <div class="pd-score">{{item.mvscore}}</div>
+                                    <div class="pd-sub">{{item.mvsub}}</div>
+                                    <div class="pd-tag">{{item.mvtag}}</div>
+                                    <div class="pd-time">{{item.mvtime}}</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--返回顶部 start-->
+        <div class="sl-ft-aside maxw">
+            <div class="sl-aside-fix">
+                <a class="gotop gohide" id="goTop" title="返回顶部">
+                    <i class="icon-arrow-up3"></i>
+                </a>
+            </div>
+        </div>
+        <!--返回顶部 end-->
+    </div>
+    <script type="text/javascript" src="static/vendor/jquery/jquery-1.11.0.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="static/vendor/vue/vue.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="script/common.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="script/video.js" charset="UTF-8"></script>
+</body>
+</html>
