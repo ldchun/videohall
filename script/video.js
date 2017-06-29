@@ -49,16 +49,8 @@ function loadVideoList(){
         success:function(data){
             var jsonData = eval(data);
             var dataArr = jsonData['data'];
-            for(var i=0, arrSize=dataArr.length; i<arrSize; i++){
-                //判断异常处理
-                dataArr[i]['mvtag'] = fatUndef(dataArr[i]['mvtag'], []);
-                dataArr[i]['mvscore'] = fatUndef(dataArr[i]['mvscore']);
-                dataArr[i]['mvtime'] = fatUndef(dataArr[i]['mvtime']);
-                dataArr[i]['mvstate'] = fatUndef(dataArr[i]['mvstate']);
-                //组合显示标签、时间、地区
-                dataArr[i]['mvtag'] = isArray(dataArr[i]['mvtag']) ? dataArr[i]['mvtag'].join("/") : dataArr[i]['mvtag'];
-                dataArr[i]['mvtime'] = dataArr[i]['mvtime']+"("+dataArr[i]['mvstate']+")";
-            }
+            //处理影片数据
+            dataArr = handleMovieData(dataArr);
             vueApp.items = vueApp.items.concat(dataArr);
         },
         error:function(error){

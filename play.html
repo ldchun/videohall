@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Cache-Control" content="no-transform,no-siteapp"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" id="viewportId"/>
+    <meta name="applicable-device" content="pc,mobile"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="description" content="必看榜单"/>
+    <meta name="keywords" content="必看榜单"/>
+    <title>必看榜单</title>
+    <!--<link type="image/x-icon" href="img/app.ico" rel="shortcut icon"/>-->
+    <link type="text/css" href="static/vendor/weui/weui.min.css" rel="stylesheet"/>
+    <link type="text/css" href="static/vendor/animate/animate.min.css" rel="stylesheet"/>
+    <link type="text/css" href="static/vendor/icomoon/style.css" rel="stylesheet"/>
+    <link type="text/css" href="css/bass.css" rel="stylesheet"/>
+    <link type="text/css" href="css/vh.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="sl-wrap vh-art">
+        <div class="sl-hd nav-fix">
+            <div class="slhd-con">
+                <a href="javascript:history.go(-1);" class="slhd-back"><i class="icon-arrow_back"></i></a>
+                <div class="slhd-title" id="hdTitle"></div>
+            </div>
+        </div>
+        <div class="sl-bd nopadb">
+            <iframe src="" class="allwh" id="iframeId" name="iframeHtml" frameborder="0" scrolling="yes"></iframe>
+        </div>
+    </div>
+    <script type="text/javascript" src="static/vendor/jquery/jquery-1.11.0.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="script/common.js" charset="UTF-8"></script>
+    <script type="text/javascript" charset="UTF-8">
+        //初始化
+        $(document).ready(function(){
+            loadData();
+        });
+        //获取参数
+        function getInData(){
+            var inData = {};
+            inData.mvhref = "";
+            //获取参数
+            var theHref = GetRequestHref();
+            if(isString(theHref)&&(theHref!="")){
+                inData.mvhref = theHref;
+            }
+            return inData;
+        }
+        //获取信息
+        function loadData(){
+            var inData = getInData();
+            //设置链接
+            var iframeElem = document.getElementById("iframeId");
+            iframeElem.setAttribute("src", inData.mvhref);
+        }
+    </script>
+</body>
+</html>
