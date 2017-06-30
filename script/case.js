@@ -69,6 +69,8 @@ function loadData(){
             loadAccount(jsonData['data']['account']);
             //列表
             loadArtList(jsonData['data']['list']);
+            //关闭加载动画
+            loadAnimHide();
         },
         error:function(error){
             console.log(error);

@@ -47,6 +47,8 @@ function loadData(){
             var dataJson = jsonData['data'];
             //加载文章
             loadArticle(dataJson);
+            //关闭加载动画
+            loadAnimHide();
             //加载影片
             if(parseInt(dataJson['mvnum']) > 0){
                 loadMovie();

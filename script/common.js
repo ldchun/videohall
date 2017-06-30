@@ -153,6 +153,11 @@ function handleMovieData(data){
 function isValidHref(str){
     return (isString(str) && (str != ''));
 }
+//隐藏加载动画
+function loadAnimHide(){
+    var $loadElem = $("#loadBox");
+    $loadElem.stop().fadeOut(200);
+}
 /************ 初始化设置（公共部分） *************/
 
 //初始化

@@ -52,6 +52,8 @@ function loadVideoList(){
             //处理影片数据
             dataArr = handleMovieData(dataArr);
             vueApp.items = vueApp.items.concat(dataArr);
+            //关闭加载动画
+            loadAnimHide();
         },
         error:function(error){
             console.log(error);
