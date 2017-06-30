@@ -38,8 +38,8 @@
                         <li class="mv-li" v-for="item in items">
                             <a class="mv-link clearfix ckeffect" v-bind:href="item.mvhref">
                                 <div class="pd-pic">
-                                    <img class="pd-img" v-bind:src="item.mvbg" alt="" v-show="(isString(item.mvbg)&&(item.mvbg!=''))">
-                                    <div class="mv-play">
+                                    <img class="pd-img" v-bind:src="item.mvbg" alt="" v-show="isValidHref(item.mvbg)">
+                                    <div class="mv-play" v-show="isValidHref(item.mvhref)">
                                         <i class="icon-play_circle_outline"></i>
                                     </div>
                                 </div>

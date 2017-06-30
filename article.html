@@ -58,9 +58,9 @@
                                 <li class="mv-li" v-for="item in items">
                                     <a class="mv-link clearfix" v-bind:href="item.mvhref">
                                         <div class="pd-pic">
-                                            <img class="pd-img" v-bind:src="item.mvbg" alt="" v-show="(isString(item.mvbg)&&(item.mvbg!=''))">
+                                            <img class="pd-img" v-bind:src="item.mvbg" alt="" v-show="isValidHref(item.mvbg)">
                                             <div class="mv-play">
-                                                <i class="icon-play_circle_outline" v-show="(isString(item.mvhref)&&(item.mvhref!=''))"></i>
+                                                <i class="icon-play_circle_outline" v-show="isValidHref(item.mvhref)"></i>
                                             </div>
                                         </div>
                                         <div class="pd-info">

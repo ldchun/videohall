@@ -67,9 +67,9 @@
                                         <span class="mv-list">
                                             <a class="pd-cell ckeffect" v-for="mvcell in artli.movie" v-bind:href="mvcell.mvhref" target="_self">
                                                 <div class="pd-pic">
-                                                    <img class="pd-img" v-bind:src="mvcell.mvbg" alt="" v-show="(isString(mvcell.mvbg)&&(mvcell.mvbg!=''))">
+                                                    <img class="pd-img" v-bind:src="mvcell.mvbg" alt="" v-show="isValidHref(mvcell.mvbg)">
                                                     <div class="overlay center-h">
-                                                        <i class="icon-play_circle_outline" v-show="(isString(mvcell.mvhref)&&(mvcell.mvhref!=''))"></i>
+                                                        <i class="icon-play_circle_outline" v-show="isValidHref(mvcell.mvhref)"></i>
                                                     </div>
                                                 </div>
                                                 <div class="pd-info">

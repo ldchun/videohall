@@ -149,7 +149,10 @@ function handleMovieData(data){
     }
     return dataArr;
 }
-
+//判断是否为有效链接
+function isValidHref(str){
+    return (isString(str) && (str != ''));
+}
 /************ 初始化设置（公共部分） *************/
 
 //初始化
