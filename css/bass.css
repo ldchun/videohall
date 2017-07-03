@@ -40,9 +40,9 @@ label,input{font-weight:normal;}
 .sl-bd{position:relative;padding-bottom:45px;}
 .sl-hd.nav-fix + .sl-bd{padding-top:45px;}
 .nopadb,.sl-bd.nopadb{padding-bottom:0;}
-.slhd-title{margin:0 50px;font-size:18px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.slhd-back{position:absolute;left:0;padding:0 10px;height:100%;color:#FFF;}
-.slhd-back i{font-size:24px;color:#FFF;}
+.slhd-title{margin:0 50px;font-size:18px;line-height:45px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.slhd-back{position:absolute;left:0;top:0;line-height:42px;padding:0 10px;height:100%;color:#FFF;}
+.slhd-back i{font-size:24px;color:#FFF;line-height:1;}
 .sl-hd.hd-style1{height:55px;line-height:55px;}
 .slhide{display:none;}
 .slpadd-in{padding:12px;}
