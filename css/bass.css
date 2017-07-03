@@ -31,7 +31,7 @@ label,input{font-weight:normal;}
 .loadanim{position:fixed;z-index:100;left:0;top:0;right:0;bottom:0;background:#FFF url("../img/load.gif") no-repeat center;}
 /*sl*/
 .sl-hd,.sl-ft{position:relative;z-index:999;min-height:45px;line-height:44px;background:#FFF;}
-.sl-hd{color:#FFF;background:#775F2D;}
+.sl-hd{color:#FFF;background:#8C7551;}
 .sl-hd a{color:#FFF;}
 .slhd-con,.slft-con{position:relative;height:100%;}
 .sl-hd.nav-fix,.sl-ft.nav-fix{position:fixed;left:0;width:100%;}
