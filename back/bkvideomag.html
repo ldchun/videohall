@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Cache-Control" content="no-transform,no-siteapp"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" id="viewportId"/>
+    <meta name="applicable-device" content="pc,mobile"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="description" content="必看榜单"/>
+    <meta name="keywords" content="必看榜单"/>
+    <title>必看榜单-后台管理</title>
+    <!--<link type="image/x-icon" href="img/app.ico" rel="shortcut icon"/>-->
+    <link type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link type="text/css" href="../static/vendor/pure/pure-min.css" rel="stylesheet"/>
+    <link type="text/css" href="../static/vendor/pure/grids-responsive-min.css" rel="stylesheet"/>
+    <link type="text/css" href="../static/vendor/icomoon/style.css" rel="stylesheet"/>
+    <link type="text/css" href="../static/plugin/bootstraptable/bootstrap-table.min.css" rel="stylesheet"/>
+    <link type="text/css" href="../css/bass.css" rel="stylesheet"/>
+    <link type="text/css" href="../css/vh.css" rel="stylesheet"/>
+    <link type="text/css" href="css/bk.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="sp-wrap bkvideo">
+        <div class="sp-hd">
+            <div class="sphd-con fixw clearfix">
+                <a class="logo-box">
+                    <img src="../img/logo.png" class="logo-img" alt="logo">
+                    <p class="logo-txt">让所有好电影与你不期而遇</p>
+                </a>
+            </div>
+        </div>
+        <div class="sp-bd">
+            <div class="spbd-con fixw">
+                <div class="spbd-left">
+                    <div class="nav-title">操作菜单</div>
+                    <ul class="nav-list">
+                        <li><a class="on" href="bkvideomag.html">视频管理</a></li>
+                    </ul>
+                </div>
+                <div class="spbd-main">
+                    <!--输入-->
+                    <div class="spbox">
+                        <div class="spbox-hd">视频列表</div>
+                        <div class="spbox-bd">
+                            <div class="bstable-tool bgmark">
+                                <div class="sp-cell">
+                                    <div class="spcell-bd">
+                                        <input type="text" class="sp-input size1" id="inBkVideo" placeholder="请输入视频名称">
+                                        <a class="spbtn" id="searchBkVideo">搜索</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bkvideo-list slmarg-tb">
+                                <table class="sltable bkvideo-table" id="tableEl">
+                                    <thead>
+                                        <tr>
+                                            <th class="col0">序号</th>
+                                            <th class="col1">封面</th>
+                                            <th class="col2">名称</th>
+                                            <th class="col3">地址</th>
+                                            <th class="col4">备注</th>
+                                            <th class="col5">状态</th>
+                                            <th class="col6">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--弹窗-->
+        <div class="slhide" style="display:none;" id="popDiv">
+            <div class="spbox nobd popbox">
+                <div class="spbox-bd">
+                    <div class="sp-cell">
+                        <div class="spcell-hd">视频名称</div>
+                        <div class="spcell-bd">
+                            <input type="text" class="sp-input allw" id="mvnamePop" placeholder="请输入视频名称" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="sp-cell">
+                        <div class="spcell-hd">视频地址</div>
+                        <div class="spcell-bd">
+                            <input type="text" class="sp-input allw" id="mvhrefPop" placeholder="请输入视频地址">
+                        </div>
+                    </div>
+                    <div class="sp-cell">
+                        <div class="spcell-hd">视频状态</div>
+                        <div class="spcell-bd">
+                            <select id="statePop" class="sp-select allw" disabled="disabled">
+                                <option value="1">正常</option>
+                                <option value="0">无效</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="sp-cell">
+                        <div class="spcell-hd">备注</div>
+                        <div class="spcell-bd">
+                            <textarea class="sp-textarea allw" id="remarkPop" placeholder="输入备注信息"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/vendor/jquery/jquery-1.11.0.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../static/vendor/bootstrap/js/bootstrap.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../static/plugin/bootstraptable/bootstrap-table.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../static/plugin/bootstraptable/bootstrap-table-zh-CN.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../static/vendor/layer/layer.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../script/common.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/bkvideomag.js" charset="UTF-8"></script>
+</body>
+</html>

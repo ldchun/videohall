@@ -9,6 +9,7 @@ var loadimgUrl = "http://www.webls.cn/server/loadimg.php?imgurl=";
 var accountAjaxUrl = mUrlBase + "account";
 var articleAjaxUrl = mUrlBase + "article/";
 var moviesAjaxUrl  = mUrlBase + "article/movies/";
+var backVideoMagUrl = mUrlBase + "manager/";
 
 /************ 自定义常用函数 *************/
 
@@ -108,6 +109,84 @@ function fatUndef(str, val){
 function getRandom(start, end){
     return Math.floor(Math.random()*Math.abs(end-start) + start);
 }
+//去掉字符串前后字符串
+function trimString(str){
+    return String(str).replace(/(^\s*)|(\s*$)/g, "");
+}
+String.prototype.Trim = function() {
+    var str = this;
+    return (isString(str)) ? str.replace(/(^\s*)|(\s*$)/g, "") : str;
+};
+//layer弹窗
+function layerPopOpen(options){
+    var layerOpt = {
+        type: 1,
+        title: ['', "padding-left:70px;font-size:16px;text-align:center;color:#FFF;background:#8C7551;"],
+        skin: 'demo-class',
+        area: ['420px', 'auto'], //宽高
+        anim: 2,
+        shadeClose: false, //开启遮罩关闭
+        btn: ['确定', '取消'],
+        yes: function(){layer.close("page");},
+        btn2: function(){layer.closeAll();},
+        btnAlign: 'c',
+        content: $("#popDiv")
+    };
+    if (typeof(options) === 'undefined'){options = {};}
+    if (typeof(options) === "object") {
+        for(var para in options){
+            var curVal = options[para];
+            if(isArray(curVal)){
+                for(var i=0,size=curVal.length; i<size; i++){
+                    layerOpt[para][i] = curVal[i];
+                }
+            }
+            else{
+                layerOpt[para] = curVal;
+            }
+        }
+    }
+    //弹窗
+    layer.open(layerOpt);
+}
+/**********  校验 **********/
+//提示框关闭
+function tipHide(){
+    $(".jq_tips_box").hide().remove();
+    layer.closeAll('tips');
+}
+//提示框显示信息
+function tipShow(elem, msgStr){
+    tipHide();
+    layer.tips(msgStr, elem, {tips: [1, '#78BA32']});
+}
+/****  校验函数 ****/
+//校验是否为空
+function EmptyCheck(elem, value, msg){
+    var res = true;
+    if(value == ''){
+        tipShow(elem, msg);
+        res = false;
+    } else{
+        tipHide();
+    }
+    return res;
+}
+//密码校验
+function PasswordCheck($elem, value){
+    var res = true;
+    if (value == "") {
+        tipShow($elem, "密码不能为空");
+        res = false;
+    } else if (value.length < 6) {
+        tipShow($elem, "密码长度不能小于6位");
+        res = false;
+    } else {
+        $elem.val(jQuery.trim(value));
+        tipHide();
+    }
+    return res;
+}
 
 /************ 功能定义函数 *************/
 
@@ -158,6 +237,7 @@ function loadAnimHide(){
     var $loadElem = $("#loadBox");
     $loadElem.stop().fadeOut(200);
 }
+
 /************ 初始化设置（公共部分） *************/
 
 //初始化
