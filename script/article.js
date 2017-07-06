@@ -119,10 +119,18 @@ function loadArticle(data){
     var dataObj = data;
     //设置第三方名称
     dataObj['accname'] = fatUndef(dataObj['accname']);
-    document.getElementById("hdTitle").innerHTML = dataObj.accname;
+    // document.getElementById("hdTitle").innerHTML = dataObj['accname'];
+    document.getElementById("hdTitle").innerHTML = dataObj["arttit"];
     //加载文章
-    var iframeElem = document.getElementById("artHtml");
-    iframeElem.setAttribute("src", dataObj.arthref);
+    // iframeElem.setAttribute("src", dataObj.arthref);
+    var artHtmlElem = document.getElementById("artHtml");
+    artHtmlElem.innerHTML = dataObj['artcon'];
+    var $img = $(artHtmlElem).find('img[data-src]');
+    var imgNum = $img.size();
+    for(var i=0; i<imgNum; i++){
+        var $imgThis = $img.eq(i);
+        $imgThis.attr('src', $imgThis.attr('data-src'));
+    }
     //侧边栏信息：标题
     dataObj['arttit'] = fatUndef(dataObj['arttit']);
     document.getElementById("artTitlePop").innerHTML = dataObj.arttit;

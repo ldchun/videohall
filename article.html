@@ -12,6 +12,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <meta name="apple-touch-fullscreen" content="yes"/>
     <meta name="renderer" content="webkit"/>
+    <meta name="referrer" content="never"/>
     <meta name="description" content="必看榜单"/>
     <meta name="keywords" content="必看榜单"/>
     <title>必看榜单</title>
@@ -32,12 +33,14 @@
         </div>
         <div class="sl-bd nopadb">
             <div class="artcon" id="artCon">
+                <div class="arthtml" id="artHtml"></div>
                 <!--<object type="text/html" data="" class="art-html" id="artHtml"></object>-->
-                <iframe src="" class="art-html" id="artHtml" name="artFrame" frameborder="0" scrolling="yes"></iframe>
+                <!--<iframe src="" class="art-html" id="artHtml" name="artFrame" frameborder="0" scrolling="yes"></iframe>-->
                 <a class="artpop-btn slhide" id='slideOpen'>
                     <i class="icon-movie"></i><br/><span>提到的影片</span>
                 </a>
             </div>
+            <!--侧边滑动栏-->
             <div class="slidepanel slide-v slide-right" id="slidePanel">
                 <div class="artpop-hd">
                     <span id="slideClose" class="artpop-close"><i class="icon-arrow_forward"></i></span>

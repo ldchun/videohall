@@ -1,7 +1,7 @@
 /**
  * Created by chun on 2017/7/3.
  */
-var tableResIdArr;
+var tableIdArr;
 var tableDataArr;
 var backVideoListUrl   = backVideoMagUrl + "list";
 var backVideoUpdateUrl = backVideoMagUrl + "resource/update";
@@ -78,6 +78,7 @@ function tableFun(){
             var dataRows  = jsonData['rows'];
             var dataTotal = jsonData['total'];
             if(dataTotal > 0) {
+                tableIdArr = [];
                 tableDataArr = [];
                 var idArr = [];
                 var pageSize = dataRows.length;
@@ -90,9 +91,9 @@ function tableFun(){
                     ];
                     dataRows[i] = curArr;
                     //记录id
-                    idArr[i] = curObj["resid"];
+                    idArr[i] = { "mvid": curObj["mvid"], "resid": curObj["resid"] };
                 }
-                tableResIdArr = idArr;
+                tableIdArr = idArr;
                 dataObj = {"rows": dataRows, "total": dataTotal};
             }
             return dataObj;
@@ -168,13 +169,14 @@ function infoPopInit(options){
 }
 /*************  编辑  ****************/
 //编辑保存
-function listEditSave(id){
+function listEditSave(idObj){
     var $mvnamePop = $("#mvnamePop");
     var $mvhrefPop = $("#mvhrefPop");
     var $statePop = $("#statePop");
     var $remarkPop = $("#remarkPop");
     var inData = {
-        resid: id,
+        mvid: idObj["mvid"],
+        resid: idObj["resid"],
         mvname: $mvnamePop.val(),
         mvhref: $mvhrefPop.val(),
         status: fatState($statePop.val()).bool,
@@ -234,7 +236,7 @@ function tableEditShow(index){
     layerPopOpen({
         title: ["视频信息"],
         yes: function(){
-            listEditSave(tableResIdArr[index]);
+            listEditSave(tableIdArr[index]);
         }
     });
 }
