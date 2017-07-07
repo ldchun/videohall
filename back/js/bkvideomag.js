@@ -65,7 +65,8 @@ function tableFun(){
             return '<img src='+value +'>';
         }
         function fatVideoHref(value, row, index) {
-            return '<a href='+value+ ' class="linka" target="_blank">'+value+'</a>';
+            // return '<a href='+value+ ' class="linka" target="_blank">'+value+'</a>';
+            return '<a href='+value+ " data-index="+index+' class="linka" target="_blank">'+value+'</a>';
         }
         function fatVideoState(value, row, index) {
             var stateObj = fatState(value);
@@ -85,6 +86,7 @@ function tableFun(){
                 for (var i = 0; i < pageSize; i++) {
                     var curObj = dataRows[i];
                     var curArr = [];
+                    curObj["mvhref"] = fatUndef(curObj["mvhref"], "-");
                     tableDataArr[i] = curObj;
                     curArr = [
                         curObj["sort"], curObj["mvbg"], curObj["mvname"], curObj["mvhref"], curObj["remark"], curObj["state"], "编辑"
@@ -144,7 +146,41 @@ function tableFun(){
                 { field: 5, width: "8%", align: 'center', valign: 'middle', halign: 'center', sortable: false, formatter:fatVideoState },
                 { field: 6, width: "8%", align: 'center', valign: 'middle', halign: 'center', sortable: false,
                     events: clickEvents, formatter:fatOpBtn }
-            ]
+            ],
+            onLoadSuccess: function (res) {
+                $tableElem.find("a.linka").editable({
+                    toggle: "mouseenter",
+                    type: "text",
+                    title: "视频地址",
+                    disabled: false,
+                    placeholder: '请输入视频地址',
+                    autotext: "auto",
+                    emptytext: "",
+                    mode: "popup",//popup \ inline
+                    display: function(value) {return ;},
+                    validate: function (value) {
+                        //判断
+                        var tmpVal = $.trim(value);
+                        if (tmpVal == "") {
+                            return '视频地址不能为空!';
+                        }
+                        //发送服务器
+                        var theEl = this;
+                        var index = theEl.getAttribute("data-index");
+                        var dataRow = tableDataArr[index];
+                        var inData = {
+                            mvid: dataRow["mvid"],
+                            resid: dataRow["resid"],
+                            mvname: dataRow["mvname"],
+                            mvhref: tmpVal,
+                            status: fatState(dataRow["state"]).bool,
+                            remark: dataRow["remark"]
+                        };
+                        //保存到服务器
+                        saveToServer(inData);
+                    }
+                });
+            }
         });
     }
     tableInit();
@@ -156,7 +192,7 @@ function infoPopInit(options){
     };
     if (options === undefined){options = {};}
     if (typeof(options) === "object") {
-        setting = $.extend(false, {}, setting, options);
+        setting = extendObj(setting, options);
     }
     var $mvnamePop = $("#mvnamePop");
     var $mvhrefPop = $("#mvhrefPop");
@@ -168,6 +204,36 @@ function infoPopInit(options){
     $remarkPop.val(setting.remark);
 }
 /*************  编辑  ****************/
+//保存到服务器
+function saveToServer(inData){
+    //发送服务器
+    $.ajax({
+        type: "get",
+        url: backVideoUpdateUrl,
+        data: inData,
+        dataType: "jsonp",
+        jsonp: "callback",
+        // jsonpCallback: "jsonpback",
+        success:function(data){
+            var jsonData = eval(data);
+            var res = jsonData['success'];
+            if(res){
+                layer.closeAll('page');
+                layer.msg('保存成功！', {icon: 1, time: 1000});
+                //提交查询
+                inSubmit();
+            }
+            else{
+                var msg = jsonData['message'];
+                layer.msg(msg, {icon: 2, time: 1000});
+            }
+        },
+        error:function(error){
+            console.log(error);
+            layer.msg('保存失败！', {icon: 2, time: 1000});
+        }
+    });
+}
 //编辑保存
 function listEditSave(idObj){
     var $mvnamePop = $("#mvnamePop");
@@ -191,34 +257,8 @@ function listEditSave(idObj){
         if(!EmptyCheck($mvhrefPop, inData.mvhref, "视频地址不能为空")){
             break;
         }
-        //发送服务器
-        $.ajax({
-            type: "get",
-            url: backVideoUpdateUrl,
-            data: inData,
-            dataType: "jsonp",
-            jsonp: "callback",
-            // jsonpCallback: "jsonpback",
-            success:function(data){
-                var jsonData = eval(data);
-                console.log(jsonData);
-                var res = jsonData['success'];
-                if(res){
-                    layer.closeAll('page');
-                    layer.msg('保存成功！', {icon: 1, time: 1000});
-                    //提交查询
-                    inSubmit();
-                }
-                else{
-                    var msg = jsonData['message'];
-                    layer.msg(msg, {icon: 2, time: 1000});
-                }
-            },
-            error:function(error){
-                console.log(error);
-                layer.msg('保存失败！', {icon: 2, time: 1000});
-            }
-        });
+        //保存到服务器
+        saveToServer(inData);
     }while(0);
 }
 //编辑显示

@@ -103,7 +103,7 @@ function isArray(obj){
 //处理未定义参数
 function fatUndef(str, val){
     val = (val === undefined) ? "" : val;
-    return (str === undefined) ? val : str;
+    return ((str === undefined) || isNull(str)) ? val : str;
 }
 //获取随机数
 function getRandom(start, end){
@@ -117,6 +117,28 @@ String.prototype.Trim = function() {
     var str = this;
     return (isString(str)) ? str.replace(/(^\s*)|(\s*$)/g, "") : str;
 };
+//Extend the Object : flag：true -> deep copy
+function extendObj(defObj, inObj, flag){
+    var curFlag = true;
+    curFlag = (flag === undefined) ? curFlag : flag;
+    for(var para in inObj){
+        var curOpt = inObj[para];
+        if(isArray(curOpt) && curFlag ){
+            for(var i=0,size=curOpt.length; i<size; i++){
+                defObj[para][i] = curOpt[i];
+            }
+        }
+        else{
+            if(typeof(curOpt) === "object"){
+                extendObj(defObj[para], curOpt, curFlag);
+            }
+            else{
+                defObj[para] = curOpt;
+            }
+        }
+    }
+    return defObj;
+}
 //layer弹窗
 function layerPopOpen(options){
     var layerOpt = {

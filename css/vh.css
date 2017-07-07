@@ -12,6 +12,8 @@ body{position:relative;}
 .vhbg{background:#8C7551;}
 .vhcolor{color:#8C7551;}
 .allwh{width:100%;height:100%;}
+/*.editable*/
+.editable-click, a.editable-click, a.editable-click:hover{border:0 none;}
 /*产品信息*/
 .pd-cells-wrap{position:relative;overflow:hidden;}
 .pd-cells{position:relative;padding-left:10px;height:215px;padding-bottom:5px;font-size:0;white-space:nowrap;overflow-y:hidden;
@@ -81,10 +83,10 @@ body{position:relative;}
 /*artical*/
 .vh-art, .vh-art .sl-bd{height:100%;overflow:hidden;}
 .artcon{position:relative;height:100%;overflow:hidden;}
-.arthtml{padding:10px 12px;height:100%;overflow-y:auto;}
+.arthtml{padding:10px 12px;height:100%;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .arthtml img{max-width:100%;}
 .art-html{width:100%;height:100%;}
-.artpop-btn{position:absolute;right:0;bottom:50px;width:70px;height:60px;font-size:12px;line-height:1;text-align:center;color:#8C7551;}
+.artpop-btn{position:absolute;z-index:10;right:0;bottom:50px;width:70px;height:60px;font-size:12px;line-height:1;text-align:center;color:#8C7551;}
 .artpop-btn i{font-size:46px;color:#8C7551;border-radius:50%;background:#E2E2E2;}
 .artpop-btn span{display:inline-block;margin-top:-5px;padding:3px 5px;border-radius:2px;background:#E2E2E2;white-space:nowrap;}
 .panel-mv .mv-link{height:100px;}
