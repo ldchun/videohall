@@ -38,7 +38,7 @@ body{position:relative;}
 /*home*/
 .vh-home .sl-hd{border:0 none;}
 .tpcon{padding:1px 15px;}
-.tplist .tpli{height:180px;margin:20px 0;overflow:hidden;}
+.tplist .tpli{height:180px;margin:15px 0;overflow:hidden;}
 .tplist .tp-link{border-radius:5px;}
 .tp-link{position:relative;display:block;width:100%;height:100%;overflow:hidden;}
 .tp-link .tpbg-img{min-width:100%;height:100%;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;}
@@ -81,10 +81,13 @@ body{position:relative;}
 .mv-link .pd-info{margin-left:105px;}
 .mv-play{position:absolute;right:5px;bottom:5px;}
 /*artical*/
-.vh-art, .vh-art .sl-bd{height:100%;overflow:hidden;}
-.artcon{position:relative;height:100%;overflow:hidden;}
-.arthtml{padding:10px 12px;height:100%;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-.arthtml img{max-width:100%;}
+.vh-art, .vh-art .sl-bd, .artbox{height:100%;}
+.artbox{position:relative;width:100%;height:100%;overflow:hidden;}
+.artcon{position:relative;height:100%;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.artcon-hd{padding:15px 12px 5px 12px;}
+.artcon-hd .arthd-tit{font-weight:normal;font-size:24px;line-height:1.4;}
+.artcon .arthtml{padding:5px 12px 25px 12px;}
+.artcon .arthtml img{max-width:100%;}
 .art-html{width:100%;height:100%;}
 .artpop-btn{position:absolute;z-index:10;right:0;bottom:50px;width:70px;height:60px;font-size:12px;line-height:1;text-align:center;color:#8C7551;}
 .artpop-btn i{font-size:46px;color:#8C7551;border-radius:50%;background:#E2E2E2;}
@@ -93,6 +96,16 @@ body{position:relative;}
 .panel-mv .mv-link .pd-pic{width:75px;height:100%;}
 .panel-mv .mv-link .pd-pic i{font-size:36px;}
 .panel-mv .mv-link .pd-info{margin-left:80px;}
+/*处理内容*/
+.rich_media_meta_list{margin-bottom:26px;line-height:20px;}
+span.rich_media_meta_nickname{display:none;}
+.rich_media_meta_list a.rich_media_meta_nickname{color:#607FA6;}
+.not_in_mm a.rich_media_meta_nickname{display:none;}
+.not_in_mm span.rich_media_meta_nickname{display:inline-block;}
+.rich_media_meta_text{color:#8c8c8c;}
+.meta_original_tag{display:inline-block;padding:1px 8px;font-size:15px;line-height:1.1;color:#8c8c8c;border:1px solid #9e9e9e;border-radius:10px;}
+.rich_media_meta{margin-right:6px;}
+.rich_media_meta_text.rich_media_meta_nickname{color:#607FA6;}
 /*侧边栏*/
 .artpop-hd{position:fixed;z-index:200;height:45px;padding:0 10px;line-height:42px;}
 .artpop-close i{font-size:26px;color:#8C7551;}

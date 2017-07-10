@@ -4,8 +4,9 @@
 var vueApp;
 var caseHref = "case.html?uid=";
 var accountBgArr = [
+    "images/home/bg-dly.jpg",
+    "images/home/bg-sir.jpg",
     "images/home/bg-kddy.jpg",
-    "images/home/bg-duliyu.jpg",
     "images/home/bg-xmt.jpg",
     "images/home/bg-yzdy.jpg"
 ];
@@ -43,7 +44,11 @@ function loadTpList(){
             var dataArr = jsonData['tp'];
             for(var i=0, arrSize=dataArr.length; i<arrSize; i++){
                 dataArr[i]['logo'] = getimgUrl + dataArr[i]['logo'];
-                dataArr[i]['bg'] = accountBgArr[getRandom(0, 3)];
+                var bgIndex = i;
+                if(bgIndex >= accountBgArr.length){
+                    bgIndex = accountBgArr[getRandom(0, accountBgArr.length-1)];
+                }
+                dataArr[i]['bg'] = accountBgArr[bgIndex];
                 var tmpHref = String(dataArr[i]['href']);
                 tmpHref = (tmpHref.charAt(0) == "/") ? tmpHref.slice(1) : tmpHref;
                 dataArr[i]['href'] = caseHref + tmpHref;

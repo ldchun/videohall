@@ -90,9 +90,9 @@ a, a:-webkit-any-link{color:#666;}
 .slide-right.open{right:0;}
 .slideover.overlay{z-index:1900;background:rgba(0,0,0,0.6);}
 /*鼠标悬浮效果*/
-.ckeffect{-webkit-transition:all 200ms ease-in-out;transition:all 200ms ease-in-out;}
+.ckeffect{-webkit-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out;}
 .ckeffect:hover{background:#F8F8F8;border-color:#F8F8F8;}
-.ckeffect:focus,.ckeffect:active{background:#F2F2F2;border-color:#F2F2F2;}
+.ckeffect:focus,.ckeffect:active{background:#F0F0F0;border-color:#F0F0F0;}
 [class^="hvr-"], [class*=" hvr-"]{position:relative;-webkit-transform:perspective(1px) translateZ(0);transform:perspective(1px) translateZ(0);}
 [class^="hvr-"]:before, [class*=" hvr-"]:before{content:"";position:absolute;z-index:-1;left:0;top:0;right:0;bottom:0;
     -webkit-transition:transform 300ms ease-out;transition:transform 300ms ease-out;}

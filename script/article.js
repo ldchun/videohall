@@ -119,10 +119,9 @@ function loadArticle(data){
     var dataObj = data;
     //设置第三方名称
     dataObj['accname'] = fatUndef(dataObj['accname']);
-    // document.getElementById("hdTitle").innerHTML = dataObj['accname'];
-    document.getElementById("hdTitle").innerHTML = dataObj["arttit"];
+    document.getElementById("hdTitle").innerHTML = dataObj['accname'];
     //加载文章
-    // iframeElem.setAttribute("src", dataObj.arthref);
+    document.getElementById("artTitle").innerHTML = dataObj["arttit"];
     var artHtmlElem = document.getElementById("artHtml");
     artHtmlElem.innerHTML = dataObj['artcon'];
     var $img = $(artHtmlElem).find('img[data-src]');
