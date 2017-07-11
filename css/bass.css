@@ -147,12 +147,28 @@ a, a:-webkit-any-link{color:#666;}
 .bootstrap-table .fixed-table-container thead th:first-child{border-radius:0;}
 .bootstrap-table thead th .sortable{padding-right:16px!important;background-position:right 11px!important;}
 .bootstrap-table .bs-checkbox{vertical-align:middle;}
+.bs-inform{margin-bottom:10px;padding:10px;}
 .bstable-tool{margin-bottom:10px;}
 .bstable-tool .btn{margin-right:15px;}
 .bootstrap-table .fixed-table-pagination{padding:0 10px;}
 .bootstrap-table .fixed-table-pagination a{color:#666;}
 .bootstrap-table .fixed-table-pagination .active a{color:#FFF;background:#8C7551;border-color:#8C7551;}
 /*.decision-content .fixed-table-pagination .pagination-detail .page-list{display:none;}*/
+/*Datepicker*/
+.datepicker{padding:0;background:#FBFBFB;border-radius:0;box-shadow:0 0 10px #666;}
+.datepicker tbody tr td{border:1px solid #D2D2D2;}
+.datepicker tr th,.datepicker tr td{border-radius:0;}
+.datepicker .table-condensed{margin-left:-1px;}
+.datepicker .table-condensed thead tr th{padding:10px;font-size:16px;font-weight:normal;}
+.datepicker .table-condensed tbody tr th,.table-condensed tbody tr td{padding:8px 10px;}
+.datepicker .table-condensed th.dow{padding:5px 10px;border-top:1px solid #DDD;}
+.datepicker .day.old,.datepicker .day.new{color:#B7B7B7;background:#EEE;}
+.datepicker .table-condensed td.day.active,.datepicker .table-condensed td.day:hover,
+.datepicker .table-condensed td.day.active:hover{color:#FFF;background:#8C7551;}
+.datepicker .table-condensed td.day.disabled:hover{color:#B7B7B7;background:#EEE;}
+.datepicker table tr td span{height:40px;line-height:40px;border-radius:0;}
+.datepicker table tr td span:hover.active.active,
+.datepicker table tr td span.active.active{background:#8C7551;}
 /*操作按钮*/
 .opbtn,a.opbtn{padding:3px 10px;font-size:13px;color:#FFF;background:#8C7551;border-radius:15px;cursor:pointer;}
 .opbtn:hover{color:#333;}

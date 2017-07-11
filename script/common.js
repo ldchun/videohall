@@ -117,6 +117,25 @@ String.prototype.Trim = function() {
     var str = this;
     return (isString(str)) ? str.replace(/(^\s*)|(\s*$)/g, "") : str;
 };
+//小于10的数值前面增加0
+function addZero(val){
+    var value = (val < 10)? ("0"+val) : val;
+    return value.toString();
+}
+//获取时间的 年、月、日
+function getDate(time){
+    var date;
+    if(time){
+        date = new Date(time);
+    }else{
+        date = new Date();
+    }
+    return {
+        year : date.getFullYear(),
+        month: addZero(date.getMonth()+1),
+        day: addZero(date.getDate())
+    };
+}
 //Extend the Object : flag：true -> deep copy
 function extendObj(defObj, inObj, flag){
     var curFlag = true;
@@ -258,6 +277,133 @@ function isValidHref(str){
 function loadAnimHide(){
     var $loadElem = $("#loadBox");
     $loadElem.stop().fadeOut(200);
+}
+//格式化时间
+function fatDate(time, options){
+    var setting = {
+        mode: 0, // 0->日，1->月，2->年
+        join: "-"
+    };
+    if (options === undefined){options = {};}
+    if (typeof(options) === "object") {
+        setting = extendObj(setting, options);
+    }
+    var timeDate = getDate(time);
+    var joinStr = setting.join;
+    var modeVal = parseInt(setting.mode);
+    var timeTxt = "";
+    var timeVal = "";
+    switch(modeVal){
+        case 2: //年
+            timeTxt = timeDate.year+"年";
+            timeVal = timeDate.year;
+            break;
+        case 1: //月
+            timeTxt = timeDate.year+"年"+timeDate.month+"月";
+            timeVal = timeDate.year+joinStr+timeDate.month;
+            break;
+        default: //日
+            timeTxt = timeDate.year+"年"+timeDate.month+"月"+timeDate.day+"日";
+            timeVal = timeDate.year+joinStr+timeDate.month+joinStr+timeDate.day;
+    }
+    return {
+        txt: String(timeTxt),
+        val: String(timeVal)
+    };
+}
+//时间选择 初始化
+function TimeDPInit(options){
+    var nowTime = new Date();
+    var oldTime = nowTime.getTime()-24*60*60*1000;
+    var setting = {
+        startEl: document.getElementById("startTime"),
+        endEl: document.getElementById("endTime"),
+        deftime: {
+            start: oldTime,
+            end: nowTime
+        },
+        viewMode: 0, // 0->日，1->月，2->年
+        callback: null
+    };
+    if (options === undefined){options = {};}
+    if (typeof(options) === "object") {
+        setting = extendObj(setting, options);
+    }
+    var dpViewMode = setting.viewMode;
+    //datapicker参数设置
+    var startDateVal = "2010-01-01";
+    var fatStartDate = fatDate(startDateVal, {mode: dpViewMode});
+    var fatEndDate = fatDate(nowTime, {mode: dpViewMode});
+    var fatDefStart = fatDate(setting.deftime.start, {mode: dpViewMode});
+    var fatDefEnd = fatDate(setting.deftime.end, {mode: dpViewMode});
+    var formatDp = '';
+    switch(dpViewMode){
+        case 2: //年
+            formatDp = 'yyyy年';
+            break;
+        case 1: //月
+            formatDp = 'yyyy年mm月';
+            break;
+        default: //日
+            formatDp = 'yyyy年mm月dd日';
+    }
+    var dpStartOpt = {
+        language: 'zh-CN',
+        startView: dpViewMode,
+        minViewMode: dpViewMode,
+        startDate: fatStartDate.val,
+        endDate: fatEndDate.val,
+        autoclose: true,
+        format: formatDp
+    };
+    var dpOpt = {
+        language: 'zh-CN',
+        startView: dpViewMode,
+        minViewMode: dpViewMode,
+        startDate: fatDefStart.val,
+        endDate: fatEndDate.val,
+        autoclose: true,
+        format: formatDp
+    };
+    var $startEl = $(setting.startEl);
+    var $endEl = $(setting.endEl);
+    var startDPOpt = dpStartOpt;
+    var endDPOpt = dpOpt;
+    //结束时间
+    var endDP = $endEl.datepicker(endDPOpt);
+    /*endDP.on('changeDate',function(ev){
+        var endTime = ev.date.valueOf();
+        var fatCurDate = fatDate(endTime, {mode: dpViewMode});
+        $endEl.datepicker('update', fatCurDate.val);
+    });*/
+    //设置初始值
+    $endEl.val(fatDefEnd.txt);
+    $endEl.datepicker('update', fatDefEnd.val);
+    //开始时间
+    if($startEl){
+        var startDP = $startEl.datepicker(startDPOpt);
+        startDP.on('changeDate',function(ev){
+            var startTimeUTC = $startEl.datepicker('getUTCDate');
+            var endTimeUTC = $endEl.datepicker('getUTCDate');
+            var fatCurStart = fatDate(startTimeUTC, {mode:dpViewMode});
+            if(startTimeUTC > endTimeUTC){
+                $endEl.val(fatCurStart.txt);
+            }
+            $endEl.datepicker('setStartDate', fatCurStart.val);
+            $endEl.focus();
+        });
+        //设置初始值
+        $startEl.val(fatDefStart.txt);
+        $startEl.datepicker('update', fatDefStart.val);
+    }
+    //日历小图标点击触发日历窗口
+    $(".icon-calendar").on('click', function(){
+        $(this).siblings().filter('input').trigger('focus');
+    });
+    //回掉函数
+    if(setting.callback){
+        setting.callback();
+    }
 }
 
 /************ 初始化设置（公共部分） *************/

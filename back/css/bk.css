@@ -37,6 +37,11 @@
 .sp-input.sizeall{width:100%;}
 .sp-select.size1{width:200px;}
 .sp-select.sizeall{width:100%;}
+.inline-input .sp-input-frame{display:inline-block;}
+.sp-input-frame{position:relative;}
+.sp-input-frame i{position:absolute;right:8px;top:50%;margin-top:-8px;font-size:16px;cursor:pointer;}
+.sp-input-frame input{padding-right:28px!important;}
+.sp-input-frame input:focus + i{color:#8C7551;}
 .sp-cells .sp-cell{margin:0;}
 .sp-cell{margin:10px 0;padding:5px 10px;line-height:32px;zoom:1;*zoom:1}
 .sp-cell:after{clear:both;content:'';display:block;height:0;line-height:0;visibility:hidden;overflow:hidden;}

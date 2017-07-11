@@ -7,15 +7,17 @@ var backVideoListUrl   = backVideoMagUrl + "list";
 var backVideoUpdateUrl = backVideoMagUrl + "resource/update";
 //加载页面
 function loadhtml(){
+    //时间选择
+    TimeDPInit();
     //查询
-    $("#searchBkVideo").on('click', inSubmit);
-    inSubmit();
+    $("#inSubmit").on('click', inSubmit);
     //窗口大小调整
     $(window).on('resize', function(){
         setTimeout(function(){
             $("#listTable").bootstrapTable('resetView');
         }, 300);
     });
+    inSubmit();
 }
 $(document).ready(function(){
     loadhtml();
@@ -27,7 +29,12 @@ function inSubmit(){
 //输入参数
 function getInData(params){
     var inData = {};
-    inData.mvname = trimString($("#inBkVideo").val());
+    var startTimeUTC = $("#startTime").datepicker('getDate');
+    inData.startTime = fatDate(startTimeUTC).val;
+    var endTimeUTC = $("#endTime").datepicker('getDate');
+    inData.endTime = fatDate(endTimeUTC).val;
+    inData.accname = $("#accName").val();
+    inData.mvname = trimString($("#mvName").val());
     //表格参数
     if(typeof(params) != 'undefined'){
         inData.pageSize  = params.limit;
