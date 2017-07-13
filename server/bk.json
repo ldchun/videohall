@@ -1,0 +1,64 @@
+jsonpback({
+	"rows": [
+		{
+			mvbg:"https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2173648321.jpg",
+			mvhref:"https://www.bilibili.com/video/av4550408/",
+			mvid:190,
+			mvname:"雪国列车",
+			remark:"雪国列车",
+			resid:7,
+			sort:1,
+			"artlist": [
+				{
+					accname: "独立鱼电影",
+					arttit: "这是一部国产电影",
+					state: true,
+					artid: 10
+				},
+				{
+					accname: "独立鱼电影",
+					arttit: "这是一部国产电影",
+					state: true,
+					artid: 10
+				}
+			]						
+		},
+		{
+			mvbg:"https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2173648321.jpg",
+			mvhref:"https://www.bilibili.com/video/av4550408/",
+			mvid:190,
+			mvname:"雪国列车",
+			remark:"雪国列车",
+			resid:7,
+			sort:1,
+			"artlist": [
+				{
+					accname: "独立鱼电影",
+					arttit: "这是一部国产电影",
+					state: true,
+					artid: 10
+				},
+				{
+					accname: "独立鱼电影",
+					arttit: "这是一部国产电影",
+					state: true,
+					artid: 10
+				}
+			]						
+		}
+	],
+	"total"：100	
+});
+//修改电影状态
+//提交参数
+{
+	mvid: 190,
+	artid: 10,
+	resid: 7,
+	state: true,
+}
+//返回结果
+jsonpback({
+	"success": true,
+	"message": "保存成功",
+});

@@ -3,12 +3,35 @@
  */
 var tableIdArr;
 var tableDataArr;
-var backVideoListUrl   = backVideoMagUrl + "list";
-var backVideoUpdateUrl = backVideoMagUrl + "resource/update";
+var backVideoListUrl    = backVideoMagUrl + "list";
+var backVideoUpdateUrl  = backVideoMagUrl + "resource/update";
+var backStatusUpdateUrl = backVideoMagUrl + "article/status/update";
+var articleUrl =  htmlUrlBase+ "article.html?artid=";
+var stateWords = {on:"启用", off: "停用"};
+//初始化加载
+function swboxLoad(el, options){
+    var setting = {class: "swbox-mini no-radius", onTxt: stateWords.on, offTxt: stateWords.off};
+    if (options === undefined){options = {};}
+    if (typeof(options) === "object") {
+        setting = extendObj(setting, options);
+    }
+    var thisEl = el;
+    thisEl.className = thisEl.className+ " "+setting.class;
+    var txtEl = document.createElement('span');
+    var togEl = document.createElement('span');
+    txtEl.className = "swbox-txt";
+    togEl.className = "swbox-tog";
+    txtEl.setAttribute("data-on", setting.onTxt);
+    txtEl.setAttribute("data-off", setting.offTxt);
+    thisEl.appendChild(txtEl);
+    thisEl.appendChild(togEl);
+}
 //加载页面
 function loadhtml(){
     //时间选择
     TimeDPInit();
+    //公众号列表
+    AccList({callback: inSubmit});
     //查询
     $("#inSubmit").on('click', inSubmit);
     //窗口大小调整
@@ -17,7 +40,6 @@ function loadhtml(){
             $("#listTable").bootstrapTable('resetView');
         }, 300);
     });
-    inSubmit();
 }
 $(document).ready(function(){
     loadhtml();
@@ -33,7 +55,7 @@ function getInData(params){
     inData.startTime = fatDate(startTimeUTC).val;
     var endTimeUTC = $("#endTime").datepicker('getDate');
     inData.endTime = fatDate(endTimeUTC).val;
-    inData.accname = $("#accName").val();
+    inData.accname = $("#acclist").val();
     inData.mvname = trimString($("#mvName").val());
     //表格参数
     if(typeof(params) != 'undefined'){
@@ -49,7 +71,7 @@ function fatState(state){
     var value = state;
     var valNum = (Number(value) == 0);
     var cssClass = valNum ? "markun" : "markok" ;
-    var stateTxt = valNum ? "无效" : "正常" ;
+    var stateTxt = valNum ? stateWords['off'] : stateWords['on'];
     var stateVal = valNum ? 0 : 1 ;
     return { css: cssClass, txt: stateTxt, val: stateVal, bool: !valNum };
 }
@@ -69,15 +91,34 @@ function tableFun(){
             return '<a class="opbtn"'+' title="请点击">'+value+'</a>';
         }
         function fatVideoImg(value, row, index) {
-            return '<img src='+value +'>';
+            return '<img src='+value +' alt="" >';
         }
         function fatVideoHref(value, row, index) {
-            // return '<a href='+value+ ' class="linka" target="_blank">'+value+'</a>';
             return '<a href='+value+ " data-index="+index+' class="linka" target="_blank">'+value+'</a>';
         }
         function fatVideoState(value, row, index) {
             var stateObj = fatState(value);
             return '<span class='+ stateObj.css +'>'+stateObj.txt+'</span>';
+        }
+        //详情信息
+        function detailFat(index, row){
+            var curData = tableDataArr[index];
+            var curDetail = curData['artlist'];
+            var htmlStr = "<div class='detail-con'>";
+            var artNum = curDetail.length;
+            for(var i=0; i<artNum; i++){
+                var curObj = curDetail[i];
+                var curArtid = curObj['artid'];
+                var checkedVal = curObj['state'] ? 'swbox on' : 'swbox';
+                var swboxStr = '<span class="'+checkedVal+'" data-index='+index+' data-artid='+curArtid+' ></span>';
+                var spanStr = "<span>"+"【"+curObj['accname']+"】 "+curObj['arttit']+"</span>";
+                var artHref = articleUrl + curArtid;
+                var aStr = "<a href="+artHref+" target='_blank'>"+spanStr+"</a>";
+                var pStr = "<p>"+swboxStr+aStr+"</p>";
+                htmlStr += pStr;
+            }
+            htmlStr += "</div>";
+            return htmlStr;
         }
         //返回数据
         function resHandler(res) {
@@ -96,7 +137,7 @@ function tableFun(){
                     curObj["mvhref"] = fatUndef(curObj["mvhref"], "-");
                     tableDataArr[i] = curObj;
                     curArr = [
-                        curObj["sort"], curObj["mvbg"], curObj["mvname"], curObj["mvhref"], curObj["remark"], curObj["state"], "编辑"
+                        curObj["sort"], curObj["mvbg"], curObj["mvname"], curObj["mvhref"], curObj["remark"], "编辑"
                     ];
                     dataRows[i] = curArr;
                     //记录id
@@ -134,7 +175,8 @@ function tableFun(){
             searchOnEnterKey: false,
             searchAlign: "left",
             cardView: false,
-            detailView: false,
+            detailView: true,
+            detailFormatter: detailFat,
             showToggle: false,
             singleSelect: false,
             selectItemName: "",
@@ -146,15 +188,16 @@ function tableFun(){
             responseHandler: resHandler,
             columns: [
                 { field: 0, width: "6%", align: 'center', valign: 'middle', halign: 'center', sortable: false },
-                { field: 1, width: "10%", align: 'center', valign: 'middle', halign: 'center', sortable: false, formatter:fatVideoImg },
+                { field: 1, width: "12%", align: 'center', valign: 'middle', halign: 'center', sortable: false, formatter:fatVideoImg },
                 { field: 2, width: "20%", align: 'center', valign: 'middle', halign: 'center', sortable: false },
-                { field: 3, width: "28%", align: 'center', valign: 'middle', halign: 'center', sortable: false, formatter:fatVideoHref },
+                { field: 3, width: "30%", align: 'center', valign: 'middle', halign: 'center', sortable: false, formatter:fatVideoHref },
                 { field: 4, width: "20%", align: 'center', valign: 'middle', halign: 'center', sortable: false },
-                { field: 5, width: "8%", align: 'center', valign: 'middle', halign: 'center', sortable: false, formatter:fatVideoState },
-                { field: 6, width: "8%", align: 'center', valign: 'middle', halign: 'center', sortable: false,
+                // { field: 5, width: "8%", align: 'center', valign: 'middle', halign: 'center', sortable: false, formatter:fatVideoState },
+                { field: 5, width: "10%", align: 'center', valign: 'middle', halign: 'center', sortable: false,
                     events: clickEvents, formatter:fatOpBtn }
             ],
             onLoadSuccess: function (res) {
+                //地址快速编辑
                 $tableElem.find("a.linka").editable({
                     toggle: "mouseenter",
                     type: "text",
@@ -186,6 +229,58 @@ function tableFun(){
                         //保存到服务器
                         saveToServer(inData);
                     }
+                });
+            },
+            onExpandRow: function(index, row, $detail){
+                var $thisEl = $detail;
+                //状态切换
+                $thisEl.find('.swbox').each(function(){
+                    var _this = this;
+                    //加载
+                    swboxLoad(_this);
+                    //注册点击
+                    eventFn.add(_this, 'click', function(){
+                        var on = "on";
+                        var $this = $(_this);
+                        var stateVal = !$this.hasClass(on);
+                        var index = $this.attr("data-index");
+                        var idObj = tableIdArr[index];
+                        var inData = {
+                            mvid: idObj["mvid"],
+                            artid: $this.attr("data-artid"),
+                            state: stateVal
+                        };
+                        layer.msg('提交中...', {icon: 16, shade: 0.3, time: 0});
+                        //提交服务器
+                        $.ajax({
+                            type: "get",
+                            url: backStatusUpdateUrl,
+                            data: inData,
+                            dataType: "jsonp",
+                            jsonp: "callback",
+                            // jsonpCallback: "jsonpback",
+                            success:function(data){
+                                layer.closeAll();
+                                var jsonData = eval(data);
+                                var res = jsonData['success'];
+                                if(res){
+                                    layer.msg('保存成功！', {icon: 1, time: 1000});
+                                    //更新状态
+                                    var on = "on";
+                                    (inData.state) ? $this.addClass(on) : $this.removeClass(on);
+                                }
+                                else{
+                                    var msg = jsonData['message'];
+                                    layer.msg(msg, {icon: 2, time: 1000});
+                                }
+                            },
+                            error:function(error){
+                                console.log(error);
+                                layer.closeAll();
+                                layer.msg('保存失败！', {icon: 2, time: 1000});
+                            }
+                        });
+                    });
                 });
             }
         });

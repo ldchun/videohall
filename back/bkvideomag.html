@@ -70,17 +70,13 @@
                                     <div class="sp-cell">
                                         <div class="spcell-hd">公众号名称</div>
                                         <div class="spcell-bd">
-                                            <select id="accName" class="sp-select size1">
-                                                <option value="">全部</option>
-                                                <option value="1">独立鱼电影</option>
-                                                <option value="5">Sir电影</option>
-                                            </select>
+                                            <select id="acclist" class="sp-select size1"></select>
                                         </div>
                                     </div>
                                     <div class="sp-cell">
                                         <div class="spcell-hd">视频名称</div>
                                         <div class="spcell-bd">
-                                            <input type="text" class="sp-input size1" id="mvName" placeholder="输入视频名称">
+                                            <input type="text" class="sp-input size1" id="mvName" value="" placeholder="输入视频名称">
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +98,7 @@
                                             <th class="col2">名称</th>
                                             <th class="col3">地址</th>
                                             <th class="col4">备注</th>
-                                            <th class="col5">状态</th>
+                                            <!--<th class="col5">状态</th>-->
                                             <th class="col6">操作</th>
                                         </tr>
                                     </thead>
@@ -133,9 +129,9 @@
                     <div class="sp-cell">
                         <div class="spcell-hd">视频状态</div>
                         <div class="spcell-bd">
-                            <select id="statePop" class="sp-select allw" disabled="disabled">
-                                <option value="1">正常</option>
-                                <option value="0">无效</option>
+                            <select id="statePop" class="sp-select allw">
+                                <option value="1">启用</option>
+                                <option value="0">禁用</option>
                             </select>
                         </div>
                     </div>

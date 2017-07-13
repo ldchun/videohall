@@ -51,5 +51,9 @@
 .sp-cell .spcell-hd + .spcell-bd{margin-left:80px;}
 .sp-cell .spcell-ft + .spcell-bd{margin-right:80px;}
 /*bkvideo*/
-.bkvideo-table .col1 img{max-height:110px;}
-.bkvideo-table td.col2{font-size:16px;color:#000;}
+.bkvideo-table td.col2{font-size:16px;color:#333;}
+.detail-con{padding:0 5px;}
+.detail-con .swbox{margin-right:10px;}
+.detail-con a{color:#1e52bb;text-decoration:underline;}
+.detail-con a:hover{color:#8c5957;}
+.detail-con>p{padding:5px 0;}

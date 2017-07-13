@@ -1,6 +1,7 @@
 /**
  * Created by chun on 2017/6/12.
  */
+var htmlUrlBase = "http://10.111.123.7:8680/www/videohall/";
 var mUrlBase = "http://10.111.123.8:9000/";
 /**** 功能Api ****/
 var getimgUrl = mUrlBase + "img/";
@@ -10,7 +11,7 @@ var accountAjaxUrl = mUrlBase + "account";
 var articleAjaxUrl = mUrlBase + "article/";
 var moviesAjaxUrl  = mUrlBase + "article/movies/";
 var backVideoMagUrl = mUrlBase + "manager/";
-
+var acclistAjaxUrl = mUrlBase + "manager/account/list";
 /************ 自定义常用函数 *************/
 
 /*取消事件的默认行为(兼容IE)*/
@@ -404,6 +405,56 @@ function TimeDPInit(options){
     if(setting.callback){
         setting.callback();
     }
+}
+//加载公众号列表
+function AccList(options){
+    var setting = {el: "#acclist", hasAll: true, tailAll: false, callback: null,
+        allOpt: [{"code": "", "name": "全部"}] };
+    if (options === undefined){options = {};}
+    if (typeof(options) === "object") {
+        setting = extendObj(setting, options);
+    }
+    $.ajax({
+        type: "get",
+        url: acclistAjaxUrl,
+        data: "",
+        dataType: "jsonp",
+        jsonp: "callback",
+        jsonpCallback: "jsonpback",
+        success:function(data){
+            var jsonData = eval(data);
+            var dataArr = jsonData["data"];
+            var listArr = [];
+            //加载列表
+            if(setting.hasAll){
+                if(setting.tailAll){
+                    listArr = listArr.concat(dataArr, setting.allOpt);
+                }
+                else{
+                    listArr = listArr.concat(setting.allOpt, dataArr);
+                }
+            }else{
+                listArr = dataArr;
+            }
+            var thisEl = $(setting.el)[0];
+            thisEl.innerHTML = "";
+            var arrSize = listArr.length;
+            for(var i=0; i<arrSize; i++){
+                var curObj = listArr[i];
+                var optionEl = document.createElement("option");
+                optionEl.value = curObj["code"];
+                optionEl.innerHTML = curObj["name"];
+                thisEl.appendChild(optionEl);
+            }
+            //回掉函数
+            if(setting.callback){
+                setting.callback();
+            }
+        },
+        error:function(error){
+            console.log(error);
+        }
+    });
 }
 
 /************ 初始化设置（公共部分） *************/
