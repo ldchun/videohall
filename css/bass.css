@@ -154,7 +154,7 @@ a, a:-webkit-any-link{color:#666;}
 .bootstrap-table .fixed-table-pagination a{color:#666;}
 .bootstrap-table .fixed-table-pagination .active a{color:#FFF;background:#8C7551;border-color:#8C7551;}
 .bootstrap-table tbody tr.detail-view td{background:#ece2cc;border-bottom:1px solid #8C7551;}
-.detail-icon{font-size:18px;font-weight:bold;}
+.detail-icon{font-size:20px;line-height:1;font-weight:bold;}
 /*Datepicker*/
 .datepicker{padding:0;background:#FBFBFB;border-radius:0;box-shadow:0 0 10px #666;}
 .datepicker tbody tr td{border:1px solid #D2D2D2;}
@@ -175,7 +175,7 @@ a, a:-webkit-any-link{color:#666;}
 .opbtn:hover{color:#333;}
 .opbtn.invalid,.opbtn.invalid:hover{color:#AAA;background:#E2E2E2;border-color:#E2E2E2;text-decoration:none;cursor:default;}
 /*swbox切换开关*/
-.swbox{display:inline-block;position:relative;width:80px;height:30px;text-align:center;border-radius:18px;vertical-align:top;cursor:pointer;overflow:hidden;}
+.swbox{display:inline-block;position:relative;width:80px;height:30px;text-align:center;border-radius:18px;vertical-align:middle;cursor:pointer;overflow:hidden;}
 .swbox-checked,.swbox input[type=checkbox],.swbox input[type=radio]{position:absolute;top:0;left:0;opacity:0;visibility:hidden;}
 .swbox-txt{display:block;position:relative;height:inherit;font-size:14px;color:#FFF;background:#ed5b49;border:1px solid #d2402e;border-radius:inherit;}
 .swbox-txt:before,.swbox-txt:after{position:absolute;top:50%;margin-top:-.5em;line-height:1;-webkit-transition:inherit;transition:inherit;}

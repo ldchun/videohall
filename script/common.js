@@ -10,8 +10,10 @@ var loadimgUrl = "http://www.webls.cn/server/loadimg.php?imgurl=";
 var accountAjaxUrl = mUrlBase + "account";
 var articleAjaxUrl = mUrlBase + "article/";
 var moviesAjaxUrl  = mUrlBase + "article/movies/";
-var backVideoMagUrl = mUrlBase + "manager/";
 var acclistAjaxUrl = mUrlBase + "manager/account/list";
+var backMagUrl = mUrlBase + "manager/";
+/*HtmlUrl*/
+var articleUrl =  htmlUrlBase+ "article.html?artid=";
 /************ 自定义常用函数 *************/
 
 /*取消事件的默认行为(兼容IE)*/
@@ -106,6 +108,10 @@ function fatUndef(str, val){
     val = (val === undefined) ? "" : val;
     return ((str === undefined) || isNull(str)) ? val : str;
 }
+//是否为未定义参数
+function isUndef(str){
+    return ((str === undefined) || isNull(str));
+}
 //获取随机数
 function getRandom(start, end){
     return Math.floor(Math.random()*Math.abs(end-start) + start);
@@ -191,6 +197,19 @@ function layerPopOpen(options){
     //弹窗
     layer.open(layerOpt);
 }
+/*********** 提交 动画\提示语 **********/
+//显示
+function ajaxAnimShow(msg){
+    var msgStr = '提交中...';
+    if(typeof(msg) != "undefined"){
+        msgStr = msg;
+    }
+    layer.msg(msgStr, {icon: 16, shade: 0.3, time: 0});
+}
+//关闭
+function ajaxAnimHide(){
+    layer.closeAll('msg');
+}
 /**********  校验 **********/
 //提示框关闭
 function tipHide(){
@@ -228,6 +247,26 @@ function PasswordCheck($elem, value){
         tipHide();
     }
     return res;
+}
+//状态定义
+var stateWords = {on:"启用", off: "停用"};
+//滑动开关加载
+function swboxLoad(el, options){
+    var setting = {class: "", onTxt: stateWords.on, offTxt: stateWords.off};
+    if (options === undefined){options = {};}
+    if (typeof(options) === "object") {
+        setting = extendObj(setting, options);
+    }
+    var thisEl = el;
+    thisEl.className = thisEl.className+ " "+setting.class;
+    var txtEl = document.createElement('span');
+    var togEl = document.createElement('span');
+    txtEl.className = "swbox-txt";
+    togEl.className = "swbox-tog";
+    txtEl.setAttribute("data-on", setting.onTxt);
+    txtEl.setAttribute("data-off", setting.offTxt);
+    thisEl.appendChild(txtEl);
+    thisEl.appendChild(togEl);
 }
 
 /************ 功能定义函数 *************/
@@ -408,7 +447,7 @@ function TimeDPInit(options){
 }
 //加载公众号列表
 function AccList(options){
-    var setting = {el: "#acclist", hasAll: true, tailAll: false, callback: null,
+    var setting = {el: "#acclist", hasAll: true, tailAll: true, callback: null,
         allOpt: [{"code": "", "name": "全部"}] };
     if (options === undefined){options = {};}
     if (typeof(options) === "object") {
@@ -420,7 +459,7 @@ function AccList(options){
         data: "",
         dataType: "jsonp",
         jsonp: "callback",
-        jsonpCallback: "jsonpback",
+        // jsonpCallback: "jsonpback",
         success:function(data){
             var jsonData = eval(data);
             var dataArr = jsonData["data"];

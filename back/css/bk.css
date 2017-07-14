@@ -18,7 +18,9 @@
 .spbtn:focus,.spbtn:active{color:#8C7551;background:#C2C2C2;border-color:#C2C2C2;}
 /*common*/
 .bgmark{background:#F6F6F6;}
-.nav-title{padding:5px 10px;font-size:16px;line-height:26px;}
+a.marka{color:#1E52BB;}
+a.marka:hover{color:#8c5957;text-decoration:underline;}
+.nav-title{padding:5px 10px;font-size:16px;line-height:26px;background:#C2C2C2;}
 .nav-list li{border-top:1px dashed #E2E2E2;}
 .nav-list li:first-child{border:0 none;}
 .nav-list li a{display:block;height:36px;line-height:36px;padding:0 15px;cursor:pointer;
@@ -36,6 +38,7 @@
 .sp-input.size1{width:200px;}
 .sp-input.sizeall{width:100%;}
 .sp-select.size1{width:200px;}
+.sp-select.sizemin{min-width:200px;}
 .sp-select.sizeall{width:100%;}
 .inline-input .sp-input-frame{display:inline-block;}
 .sp-input-frame{position:relative;}
@@ -57,3 +60,11 @@
 .detail-con a{color:#1e52bb;text-decoration:underline;}
 .detail-con a:hover{color:#8c5957;}
 .detail-con>p{padding:5px 0;}
+/*bkarticle*/
+.bkart-table td.col3{font-size:14px;}
+.bkart-mvlist{padding:0 10px;}
+.bkart-mvlist img{height:110px;}
+.bkart-mvli{padding:10px;border-top:1px dashed #C2C2C2;}
+.bkart-mvlist .bkart-mvli:first-child{border:0 none;}
+.bkart-mvli>.swbox,.bkart-mvli>img,.bkart-mvli>em{display:inline-block;margin-right:10px;vertical-align:middle;}
+
