@@ -95,7 +95,7 @@ function updateMvInArtState(elem, inData){
 }
 //更新影片信息
 function updateMvInfo(inPara){
-    //参数 mvid、resid、mvhref、mvname、status、remark
+    //参数 mvid、resid、mvhref、status、mvname、remark
     var inData = {mvid:null, resid:null, mvhref:null, mvname:null,status:null,remark:null};
     if (inPara === undefined){inPara = {};}
     if (typeof(inPara) === "object") {

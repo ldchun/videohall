@@ -66,5 +66,5 @@ a.marka:hover{color:#8c5957;text-decoration:underline;}
 .bkart-mvlist img{height:110px;}
 .bkart-mvli{padding:10px;border-top:1px dashed #C2C2C2;}
 .bkart-mvlist .bkart-mvli:first-child{border:0 none;}
-.bkart-mvli>.swbox,.bkart-mvli>img,.bkart-mvli>em{display:inline-block;margin-right:10px;vertical-align:middle;}
-
+.bkart-mvli>.swbox,.bkart-mvli>img,.bkart-mvli>em{display:inline-block;margin-right:30px;vertical-align:middle;}
+.bkart-mvli>img,.bkart-mvli>em{margin-right:60px;}
