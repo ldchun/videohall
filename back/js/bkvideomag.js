@@ -17,6 +17,7 @@ function loadhtml(){
             $("#tableEl").bootstrapTable('resetView');
         }, 300);
     });
+    inSubmit();
 }
 $(document).ready(function(){
     loadhtml();
@@ -43,10 +44,30 @@ function getInData(params){
     }
     return inData;
 }
-
 //表格
 function tableFun(){
-    // 表格点击事件
+    /************* 表格点击事件 ************/
+    window.eventMvState = {
+        'click .swbox': function(e, value, row, index) {
+            var _this = this;
+            //注册点击
+            eventFn.add(_this, 'click', function(){
+                var curData = tableDataArr[index];
+                var on = "on";
+                var $this = $(_this);
+                var stateVal = !$this.hasClass(on);
+                var idObj = tableIdArr[index];
+                var inData = {
+                    mvid: idObj["mvid"],
+                    resid: idObj["resid"],
+                    mvname: curData["mvname"],
+                    state: stateVal
+                };
+                //更新视频状态
+                updateMvInfo(inData);
+            });
+        }
+    };
     window.clickEvents = {
         'click .opbtn': function(e, value, row, index) {
             tableEditShow(index);
@@ -66,8 +87,12 @@ function tableFun(){
             return '<a href='+value+ " data-index="+index+' class="linka" target="_blank">'+value+'</a>';
         }
         function fatMvState(value, row, index) {
-            var stateObj = fatState(value);
-            return '<span class='+ stateObj.css +'>'+stateObj.txt+'</span>';
+            var stateVal = value;
+            var spanEl = document.createElement('span');
+            var checkedVal = stateVal ? 'swbox on' : 'swbox';
+            spanEl.className = checkedVal;
+            swboxLoad(spanEl, {class: "swbox-mini"});
+            return spanEl.outerHTML;
         }
         //详情信息
         function detailFat(index, row){
@@ -104,9 +129,10 @@ function tableFun(){
                     var curObj = dataRows[i];
                     var curArr = [];
                     curObj["mvhref"] = fatUndef(curObj["mvhref"], "-");
+                    curObj["mvstate"] = fatUndef(curObj["mvstate"], true);
                     tableDataArr[i] = curObj;
                     curArr = [
-                        curObj["sort"], curObj["mvbg"], curObj["mvname"], curObj["mvhref"], curObj["remark"], "编辑"
+                        curObj["sort"], curObj["mvbg"], curObj["mvname"], curObj["mvhref"], curObj["remark"], curObj["mvstate"]
                     ];
                     dataRows[i] = curArr;
                     //记录id
@@ -156,14 +182,15 @@ function tableFun(){
             smartDisplay: false,
             responseHandler: resHandler,
             columns: [
-                { field: 0, width: "6%", align: 'center', valign: 'middle', halign: 'center', sortable: false },
+                { field: 0, width: "5%", align: 'center', valign: 'middle', halign: 'center', sortable: false },
                 { field: 1, width: "12%", align: 'center', valign: 'middle', halign: 'center', sortable: false, formatter:fatMvImg },
                 { field: 2, width: "20%", align: 'center', valign: 'middle', halign: 'center', sortable: false },
-                { field: 3, width: "30%", align: 'center', valign: 'middle', halign: 'center', sortable: false, formatter:fatMvHref },
+                { field: 3, width: "30%", align: 'left', valign: 'middle', halign: 'center', sortable: false, formatter:fatMvHref },
                 { field: 4, width: "20%", align: 'center', valign: 'middle', halign: 'center', sortable: false },
-                // { field: 5, width: "8%", align: 'center', valign: 'middle', halign: 'center', sortable: false, formatter:fatMvState },
                 { field: 5, width: "10%", align: 'center', valign: 'middle', halign: 'center', sortable: false,
-                    events: clickEvents, formatter:fatOpBtn }
+                    events: eventMvState, formatter:fatMvState}
+                /*{ field: 5, width: "10%", align: 'center', valign: 'middle', halign: 'center', sortable: false,
+                    events: clickEvents, formatter:fatOpBtn }*/
             ],
             onLoadSuccess: function (res) {
                 //影片地址快速编辑

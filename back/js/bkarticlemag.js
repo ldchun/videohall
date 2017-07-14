@@ -243,10 +243,12 @@ function tableFun(){
                     var mvidVal = _this.getAttribute("data-mvid");
                     var residVal = _this.getAttribute("data-resid");
                     var $parent = $(this).parent();
+                    var nameVal = $parent.find("em").text();
                     var stateVal = $parent.find(".swbox").hasClass("on");
                     var inData = {
                         mvid: mvidVal,
                         resid: residVal,
+                        mvname: nameVal,
                         mvhref: hrefVal,
                         status: stateVal
                     };
