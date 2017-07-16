@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Cache-Control" content="no-transform,no-siteapp"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" id="viewportId"/>
+    <meta name="applicable-device" content="pc,mobile"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="description" content="bilifun"/>
+    <meta name="keywords" content="bilifun"/>
+    <title>bilifun</title>
+    <!--<link type="image/x-icon" href="img/app.ico" rel="shortcut icon"/>-->
+    <link type="text/css" href="../static/vendor/icomoon/style.css" rel="stylesheet"/>
+    <link type="text/css" href="../css/bass.css" rel="stylesheet"/>
+    <link type="text/css" href="../css/vh.css?v=0.1" rel="stylesheet"/>
+</head>
+<body>
+    <div class="sl-wrap vh-anysee">
+        <div class="sl-bd nopadd">
+            <div class="any-body maxw slpadd-lf">
+                <p class="any-logo text-center">
+                    <img src="../img/logo.png" class="logo-max" alt="logo">
+                </p>
+                <div class="any-con">
+                    <div class="sl-search">
+                        <i class="icon-movie search-ico"></i>
+                        <input type="text" class="search-input" id="inValue" value="" placeholder="播放支持网址：爱奇艺视频、腾讯视频、芒果视频、优酷视频等。">
+                        <a class="search-btn" id="inSubmit">VIP播放</a>
+                    </div>
+                    <div class="any-feature">
+                        <div class="priv">
+                            <div class="priv-title">
+                                <em></em>
+                                <span>功能特权</span>
+                            </div>
+                            <div class="priv-con">
+                                <ul class="priv-list clearfix">
+                                    <li>
+                                        <i class="feaicon feaico-ad"></i>
+                                        <p>跳过广告</p>
+                                    </li>
+                                    <li>
+                                        <i class="feaicon feaico-vip"></i>
+                                        <p>VIP片库</p>
+                                    </li>
+                                    <li>
+                                        <i class="feaicon feaico-pianku"></i>
+                                        <p>免费观看</p>
+                                    </li>
+                                    <li>
+                                        <i class="feaicon feaico-cinema"></i>
+                                        <p>院线新片</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="priv">
+                            <div class="priv-title">
+                                <em></em>
+                                <span>支持网站</span>
+                            </div>
+                            <div class="priv-con">
+                                <div class="priv-cells">
+                                    <span class="priv-cell">
+                                        <a class="priv-link" href="http://www.iqiyi.com" target="_blank">
+                                            <img src="../img/logo-iqiyi.png" alt="iqiyi">
+                                        </a>
+                                    </span>
+                                    <span class="priv-cell">
+                                        <a class="priv-link" href="http://www.youku.com" target="_blank">
+                                            <img src="../img/logo-youku.png" alt="youku">
+                                        </a>
+                                    </span>
+                                    <span class="priv-cell">
+                                        <a class="priv-link" href="https://v.qq.com" target="_blank">
+                                            <img src="../img/logo-qqtv.png" alt="qqtv">
+                                        </a>
+                                    </span>
+                                    <span class="priv-cell">
+                                        <a class="priv-link" href="http://www.mgtv.com" target="_blank">
+                                            <img src="../img/logo-mgtv.png" alt="mgtv">
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/vendor/jquery/jquery-1.11.0.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../static/vendor/vue/vue.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../static/vendor/layer/layer.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../script/common.js" charset="UTF-8"></script>
+    <script type="text/javascript" charset="UTF-8">
+        var vipplayUrl = "vipplay.html?url=";
+        function anySeeFn(){
+            var inValueEl = document.getElementById("inValue");
+            var inData = {};
+            inData.val = $(inValueEl).val();
+            // 输入校验
+            do{
+                if(!EmptyCheck(inValueEl, inData.val, "输入网址不能为空")){
+                    break;
+                }
+                var goHref = vipplayUrl + inData.val;
+                window.open(goHref);
+            }while(0);
+        }
+        $("document").ready(function(){
+            //注测看一下
+            var thisEl = document.getElementById("inSubmit");
+            eventFn.add(thisEl, "click", anySeeFn);
+        });
+    </script>
+</body>
+</html>

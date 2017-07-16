@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Cache-Control" content="no-transform,no-siteapp"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" id="viewportId"/>
+    <meta name="applicable-device" content="pc,mobile"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="description" content="bilifun"/>
+    <meta name="keywords" content="bilifun"/>
+    <title>bilifun</title>
+    <!--<link type="image/x-icon" href="img/app.ico" rel="shortcut icon"/>-->
+    <link type="text/css" href="../css/bass.css" rel="stylesheet"/>
+    <link type="text/css" href="../css/vh.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="sl-wrap allwh">
+        <div class="sl-bd allwh nopadd">
+            <iframe src="" class="allwh" id="iframeId" name="iframeHtml" frameborder="0" scrolling="yes"></iframe>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/vendor/jquery/jquery-1.11.0.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../script/common.js" charset="UTF-8"></script>
+    <script type="text/javascript" charset="UTF-8">
+        var anyApiUrl = "http://www.12399688.com/admin.php?url=";
+        //初始化
+        $(document).ready(function(){
+            loadData();
+        });
+        //获取参数
+        function getInData(){
+            var inData = {};
+            inData.url = "";
+            //获取参数
+            var theHref = GetRequestHref();
+            if(isString(theHref)&&(theHref!="")){
+                inData.url = theHref;
+            }
+            return inData;
+        }
+        //获取信息
+        function loadData(){
+            var inData = getInData();
+            //设置链接
+            var iframeEl = document.getElementById("iframeId");
+            iframeEl.setAttribute("src", anyApiUrl+inData.url);
+        }
+    </script>
+</body>
+</html>

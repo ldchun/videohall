@@ -9,9 +9,25 @@ body{position:relative;}
 .logo-box:hover{color:#666;}
 .logo-box .logo-img{height:22px;}
 .logo-box .logo-txt{font-size:12px;font-family:"宋体",Microsoft YaHei;}
+.logo-max{height:50px;}
 .vhbg{background:#8C7551;}
 .vhcolor{color:#8C7551;}
 .allwh{width:100%;height:100%;}
+.text-center{text-align:center;}
+.priv-title{position:relative;height:20px;line-height:20px;font-size:13px;margin-bottom:10px;text-align:center;}
+.priv-title em{position:absolute;z-index:-1;left:0;right:0;top:50%;margin-top:-1px;
+    border-top:1px solid #E2E2E2;box-shadow:0 1px 0 #FFF;}
+.priv-title span{display:inline-block;padding:0 5px;color:#666;background:#FFF;}
+.priv{padding-bottom:10px;}
+.priv-con{margin:10px 0;}
+.priv-list li{float:left;width:25%;text-align:center;}
+.priv-list li p{font-size:13px;color:#868686;}
+.priv-cells{font-size:0;text-align:center;}
+.priv-cells .priv-cell{position:relative;display:inline-block;max-width:120px;margin:5px 12px;font-size:13px;
+    vertical-align:middle;white-space:nowrap;}
+.priv-link{display:block;padding:5px;text-align:center;}
+.priv-link img{max-width:100%;max-height:40px;}
+.priv-link:focus,.priv-link:active{background:#F0F0F0;border-color:#F0F0F0;}
 /*.editable*/
 .editable-click, a.editable-click, a.editable-click:hover{border:0 none;}
 /*产品信息*/
@@ -123,3 +139,12 @@ span.rich_media_meta_nickname{display:none;}
     color:#8C7551;margin-right:10px;vertical-align:bottom;}
 .artpop-tidao .artpop-num span{display:inline-block;font-size:18px;vertical-align:bottom;}
 .artpop-con{padding:0 10px;}
+/*anysee*/
+.feaicon{display:inline-block;width:46px;height:46px;background:url("../img/feaicon.png") no-repeat 0 0;}
+.feaicon.feaico-ad{background-position:0 0;}
+.feaicon.feaico-vip{background-position:-60px 0;}
+.feaicon.feaico-pianku{background-position:0 -60px;}
+.feaicon.feaico-cinema{background-position:-60px -60px;}
+.any-body{padding-top:20px;}
+.any-logo{margin-top:6%;margin-bottom:5%;}
+.any-feature{margin-top:8%;}

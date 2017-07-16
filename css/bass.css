@@ -21,7 +21,7 @@ a, a:-webkit-any-link{color:#666;}
 .fr{float:right;}
 .clear{clear:both;}
 .minw{float:none!important;max-width:1920px;min-width:960px;margin:0 auto;}
-.maxw{float:none!important;max-width:480px;margin:0 auto;}
+.maxw{float:none!important;max-width:640px;min-width:320px;margin:0 auto;}
 .fixw{float:none!important;width:1200px;margin:0 auto;}
 [class^="icon-"], [class*=" icon-"]{display:inline-block;color:#2D3237;vertical-align:middle;}
 .arrow-up{display:inline-block;width:0;height:0;border-bottom:10px solid #2D3237;border-top:0 none;
@@ -66,10 +66,47 @@ a, a:-webkit-any-link{color:#666;}
 .slmarg-in{margin:10px;}
 .slmarg-lf{margin:0 10px;}
 .slmarg-tb{margin:10px 0;}
+.allwh{width:100%;height:100%;}
+.nopadd{padding:0;}
+.nopadtb{padding-top:0;;padding-bottom:0;}
+/*btn*/
+.slbtn{display:inline-block;padding:5px 15px;line-height:1;text-align:center;color:#2277E6;
+    border:1px solid #2277E6;background:#E2E2E2;border-radius:2px;cursor:pointer;}
+.slbtn.no-radius{border-radius:0;}
+.slbtn:hover{color:#FFF;background:#2277E6;}
+.slbtn:focus,.slbtn:active{color:#FFF;background:#2277DA;border-color:#2277DA;}
+.slbtn.btndef{border:1px solid #C2C2C2;background:#DDD;}
+.slbtn.btndef:hover{color:#2277E6;background:#D2D2D2;}
+.slbtn.btndef:focus,.slbtn.btndef:active{color:#2277E6;background:#C2C2C2;border-color:#C2C2C2;}
+.sl-input,.sl-select{height:32px;line-height:30px;padding:0 10px;border:1px solid #D2D2D2;
+    -webkit-transition:all 200ms ease-in-out;transition:all 200ms ease-in-out;}
+.sl-textarea{padding:5px 10px;min-height:50px;line-height:24px;}
+.sl-input:focus,.sl-select:focus,.sl-textarea:focus{border-color:#8C7551;}
+.sl-input.size1,.sl-select.size1{width:200px;}
+.sl-input.allw, .sl-select.allw{width:100%;}
+.sl-input.sizemin,.sl-select.sizemin{min-width:200px;}
+.inline-input .sl-input-frame{display:inline-block;}
+.sl-input-frame{position:relative;}
+.sl-input-frame>i{position:absolute;left:8px;top:50%;margin-top:-8px;font-size:16px;cursor:pointer;}
+.sl-input-frame>input + i{left:auto;right:8px;}
+.sl-input-frame>input{padding-right:28px!important;}
+.sl-input-frame>input:focus + i{color:#8C7551;}
+.sl-input-frame>i + input{padding-left:30px;}
 .noscrollbar::-webkit-scrollbar{width:0;height:0;background-color:#FFF;}
 .noscrollbar::-webkit-scrollbar-track{background-color:#FFF;}
 .noscrollbar::-webkit-scrollbar-thumb{background-color:#FFF;}
 .over-scrollbar{position:absolute;z-index:1000;width:100%;height:8px;left:0;bottom:0;background:#FFF;}
+/*search*/
+.sl-search{position:relative;padding-right:80px;background:#FFF;}
+.sl-search .search-ico{position:absolute;left:0;top:10px;width:38px;height:20px;font-size:28px;line-height:20px;
+    color:#2277E6;text-align:center;border-right:1px solid #C2C2C2;}
+.sl-search .search-input{display:block;width:100%;padding:0 5px 0 45px;height:40px;font-size:14px;line-height:40px;
+    border:2px solid #2277E6;border-right:0 none;border-radius:0!important;}
+.sl-search .search-input:focus{border-color:#2277CA;}
+.sl-search .search-btn{position:absolute;right:0;top:0;width:80px;height:40px;font-size:16px;line-height:40px;
+    text-align:center;white-space:nowrap;color:#FFF;background:#2277E6;cursor:pointer;
+    font-family:Arial, sans-serif;}
+.sl-search .search-btn:focus,.sl-search .search-btn:active{color:#FFF;background:#2277CA;border-color:#2277CA;}
 /*返回顶部 start*/
 .sl-ft-aside{position:relative;height:0;}
 .sl-aside-fix{position:fixed;z-index:1000;bottom:30px;right:10px;width:38px;}
@@ -91,7 +128,7 @@ a, a:-webkit-any-link{color:#666;}
 .slideover.overlay{z-index:1900;background:rgba(0,0,0,0.6);}
 /*鼠标悬浮效果*/
 .ckeffect{-webkit-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out;}
-.ckeffect:hover{background:#F8F8F8;border-color:#F8F8F8;}
+.ckeffect:hover{background:#FAFAFA;border-color:#FAFAFA;}
 .ckeffect:focus,.ckeffect:active{background:#F0F0F0;border-color:#F0F0F0;}
 [class^="hvr-"], [class*=" hvr-"]{position:relative;-webkit-transform:perspective(1px) translateZ(0);transform:perspective(1px) translateZ(0);}
 [class^="hvr-"]:before, [class*=" hvr-"]:before{content:"";position:absolute;z-index:-1;left:0;top:0;right:0;bottom:0;
