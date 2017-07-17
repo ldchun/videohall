@@ -3,7 +3,7 @@
  */
 //文章
 var bkArtListUrl    = backMagUrl + "article/list";
-var bkArtStateUpUrl = backMagUrl + "article/status/update";
+var bkArtStateUpUrl = backMagUrl + "article/update/status";
 //影片
 var bkMvListUrl  = backMagUrl + "list";
 var bkMvInfoUpUrl   = backMagUrl + "resource/update";
@@ -94,13 +94,9 @@ function updateMvInArtState(elem, inData){
     });
 }
 //更新影片信息
-function updateMvInfo(inPara){
-    //参数 mvid、resid、mvhref、status、mvname、remark
-    var inData = {mvid:null, resid:null, mvhref:null, mvname:null,status:null,remark:null};
-    if (inPara === undefined){inPara = {};}
-    if (typeof(inPara) === "object") {
-        inData = extendObj(inData, inPara);
-    }
+function updateMvInfo(inData){
+    //必须参数：mvid、resid、mvhref、status (扩展：mvname、remark)
+    inData.resid = (typeof(inData['resid'] === undefined) || isNull(inData['resid'])) ? "" : inData['resid'];
     //动画
     ajaxAnimShow();
     //提交服务器

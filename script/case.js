@@ -4,6 +4,7 @@
 var vueApp;
 var videoHref = "video.html?artid=";
 var articleHref = "article.html?artid=";
+var tmpUid;
 //数据初始化
 function vueAppInit(){
     vueApp = new Vue({
@@ -44,12 +45,13 @@ $(document).ready(function(){
 //获取参数
 function getInData(){
     var inData = {};
-    inData.uid = "article/list/1";
+    inData.uid = "1";
     //获取参数
     var hrefPara = GetRequest();
     if(typeof(hrefPara.uid) != 'undefined'){
         inData.uid = hrefPara.uid;
     }
+    tmpUid = inData.uid;
     return inData;
 }
 //获取信息
@@ -58,7 +60,7 @@ function loadData(){
     $.ajax({
         type: "get",
         // url: "server/case.json",
-        url: mUrlBase + inData.uid,
+        url: caseAjaxUrl + inData.uid,
         data: "",
         dataType: "jsonp",
         jsonp: "callback",
@@ -85,6 +87,21 @@ function loadAccount(data){
     document.getElementById("hdTitle").innerHTML = dataObj['accname'];
     document.getElementById("accName").innerHTML = dataObj['accname'];
     document.getElementById("accSub").innerHTML  = dataObj['accsub'];
+    //设置背景
+    var imgSrc = "";
+    switch(parseInt(tmpUid)){
+        case 1:
+            imgSrc = accountBgArr[0];
+            break;
+        case 3:
+            imgSrc = accountBgArr[1];
+            break;
+        case 5:
+            imgSrc = accountBgArr[2];
+            break;
+    }
+    var bgImgEl = document.getElementById("caseTpBgImg");
+    bgImgEl.setAttribute('src', imgSrc);
 }
 //列表
 function loadArtList(data){

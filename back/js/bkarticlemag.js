@@ -51,18 +51,15 @@ function tableFun(){
     window.eventArtState = {
         'click .swbox': function(e, value, row, index) {
             var _this = this;
-            //注册点击
-            eventFn.add(_this, 'click', function(){
-                var on = "on";
-                var $this = $(_this);
-                var stateVal = !$this.hasClass(on);
-                var inData = {
-                    artid: tableIdArr[index],
-                    state: stateVal
-                };
-                //更新文章状态
-                updateArtState(_this, inData);
-            });
+            var on = "on";
+            var $this = $(_this);
+            var stateVal = !$this.hasClass(on);
+            var inData = {
+                artid: tableIdArr[index],
+                state: stateVal
+            };
+            //更新文章状态
+            updateArtState(_this, inData);
         }
     };
     window.eventOpBtn = {
@@ -133,7 +130,10 @@ function tableFun(){
             divEl.className = "bkart-mvlist";
             for(var i=0; i<dataSize; i++){
                 var curObj = dataArr[i];
+                // 处理数据
                 curObj["mvhref"] = fatUndef(curObj["mvhref"], "-");
+                curObj['resid'] = isNull(curObj['resid']) ? "" : curObj['resid'];
+                //创建行
                 var cellEl = document.createElement('div');
                 cellEl.className = "bkart-mvli";
                 //影片状态
@@ -154,8 +154,7 @@ function tableFun(){
                 aEl.setAttribute('data-mvid', curObj['mvid']);
                 aEl.setAttribute("href", curObj['mvhref']);
                 aEl.setAttribute("target", "_blank");
-                var residVal = (curObj['resid'] === undefined) ? "" : curObj['resid'];
-                aEl.setAttribute('data-resid', residVal);
+                aEl.setAttribute('data-resid', curObj['resid']);
                 aEl.innerHTML = curObj['mvhref'];
                 aEl.className = "marka";
                 cellEl.appendChild(spanEl);

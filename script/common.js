@@ -9,11 +9,20 @@ var loadimgUrl = "http://www.webls.cn/server/loadimg.php?imgurl=";
 /*AjaxUrl*/
 var accountAjaxUrl = mUrlBase + "account";
 var articleAjaxUrl = mUrlBase + "article/";
+var caseAjaxUrl    = mUrlBase + "article/list/";
 var moviesAjaxUrl  = mUrlBase + "article/movies/";
 var acclistAjaxUrl = mUrlBase + "manager/account/list";
 var backMagUrl = mUrlBase + "manager/";
 /*HtmlUrl*/
 var articleUrl =  htmlUrlBase+ "article.html?artid=";
+//推荐背景
+var accountBgArr = [
+    "images/home/bg-dly.jpg",
+    "images/home/bg-sir.jpg",
+    "images/home/bg-kddy.jpg",
+    "images/home/bg-xmt.jpg",
+    "images/home/bg-yzdy.jpg"
+];
 /************ 自定义常用函数 *************/
 
 /*取消事件的默认行为(兼容IE)*/

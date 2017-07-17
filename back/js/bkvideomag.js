@@ -50,22 +50,19 @@ function tableFun(){
     window.eventMvState = {
         'click .swbox': function(e, value, row, index) {
             var _this = this;
-            //注册点击
-            eventFn.add(_this, 'click', function(){
-                var curData = tableDataArr[index];
-                var on = "on";
-                var $this = $(_this);
-                var stateVal = !$this.hasClass(on);
-                var idObj = tableIdArr[index];
-                var inData = {
-                    mvid: idObj["mvid"],
-                    resid: idObj["resid"],
-                    mvname: curData["mvname"],
-                    state: stateVal
-                };
-                //更新视频状态
-                updateMvInfo(inData);
-            });
+            var curData = tableDataArr[index];
+            var on = "on";
+            var $this = $(_this);
+            var stateVal = !$this.hasClass(on);
+            var idObj = tableIdArr[index];
+            var inData = {
+                mvid: idObj["mvid"],
+                resid: idObj["resid"],
+                mvname: curData["mvname"],
+                state: stateVal
+            };
+            //更新视频状态
+            updateMvInfo(inData);
         }
     };
     window.clickEvents = {
@@ -84,7 +81,7 @@ function tableFun(){
             return '<img src='+value +' alt="" >';
         }
         function fatMvHref(value, row, index) {
-            return '<a href='+value+ " data-index="+index+' class="linka" target="_blank">'+value+'</a>';
+            return '<a href='+value+ " data-index="+index+' class="linka marka" target="_blank">'+value+'</a>';
         }
         function fatMvState(value, row, index) {
             var stateVal = value;
