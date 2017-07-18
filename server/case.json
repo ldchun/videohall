@@ -10,7 +10,8 @@ jsonpback({
 					"artid": "1",
 					"arttit": "变形金刚5：最后的骑士",
 					"artsub": "Transformers: The Last Knight",
-					"artbg": "images/case/case-art1.jpg"
+					"artbg": "images/case/case-art1.jpg",
+					"arttime": "2017-07-17"
 				},
 				"movie": [
 					{
@@ -56,7 +57,8 @@ jsonpback({
 					"artid": "1",
 					"arttit": "李雷和韩梅梅",
 					"artsub": "你还记得当年教材上的国民CP吗",
-					"artbg": "images/case/case-art2.jpg"
+					"artbg": "images/case/case-art2.jpg",
+					"arttime": "2017-07-18"
 				},
 				"movie": [
 					{

@@ -5,6 +5,7 @@ var vueApp;
 var videoHref = "video.html?artid=";
 var articleHref = "article.html?artid=";
 var tmpUid;
+var tmpArtTime = false;
 //数据初始化
 function vueAppInit(){
     vueApp = new Vue({
@@ -12,7 +13,7 @@ function vueAppInit(){
         data: {
             "list": [
                 {
-                    "article": {"artid": "", "arttit": "", "artsub": "", "artbg": ""},
+                    "article": {"artid": "", "arttit": "", "artsub": "", "artbg": "", "arttime": false},
                     "movie": [
                         { "mvname": "", "mvsub": "", "mvbg": "", "mvhref": "" }
                     ]
@@ -103,6 +104,19 @@ function loadAccount(data){
     var bgImgEl = document.getElementById("caseTpBgImg");
     bgImgEl.setAttribute('src', imgSrc);
 }
+//处理文章时间
+function handleArtTime(time){
+    var timeVal = false;
+    if((typeof(time) != "undefined") && !isNull(time)){
+        var theDate = getDate(time);
+        timeVal = parseInt(theDate.month)+"月"+theDate.day+"日";
+    }
+    return timeVal;
+}
+//判断是否显示文章时间
+function isShowArtTime(time){
+    return (time != false);
+}
 //列表
 function loadArtList(data){
     var dataArr = data;
@@ -110,6 +124,14 @@ function loadArtList(data){
         dataArr[i]['article']['arthref'] = articleHref + dataArr[i]['article']['artid'];
         dataArr[i]['article']['artall']  = videoHref + dataArr[i]['article']['artid']+"&arttit="+decodeURI(dataArr[i]['article']['arttit']);
         dataArr[i]['article']['artbg']   = getimgUrl + dataArr[i]['article']['artbg'];
+        //时间
+        var strArtTime = handleArtTime(dataArr[i]['article']['arttime']);
+        if(tmpArtTime != strArtTime){
+            tmpArtTime = strArtTime;
+            dataArr[i]['article']['arttime'] = strArtTime;
+        }else{
+            dataArr[i]['article']['arttime'] = false;
+        }
     }
     vueApp.list = vueApp.list.concat(dataArr);
 }

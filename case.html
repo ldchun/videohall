@@ -30,7 +30,7 @@
                 <div class="slhd-title" id="hdTitle"></div>
             </div>
         </div>
-        <div class="sl-bd">
+        <div class="sl-bd nopadb">
             <div class="case-body maxw">
                 <!--顶部-->
                 <div class="case-tphd" id="caseTpHd">
@@ -50,44 +50,47 @@
                         <i class="icon-file-text2 vhcolor"></i>最新文章
                     </div>
                     <div class="tpart-bd">
-                        <div class="art-item" v-for="artli in list">
-                            <a class="art-link" v-bind:href="artli.article.arthref">
-                                <img v-bind:src="artli.article.artbg" alt="">
-                                <div class="overlay">
-                                    <div class="artct">
-                                        <span class="artct-tit">{{artli.article.arttit}}</span>
-                                        <p class="artct-sub">{{artli.article.artsub}}</p>
+                        <div class="art-plate" v-for="artli in list">
+                            <div class="art-time" v-show="isShowArtTime(artli.article.arttime)"><span>{{artli.article.arttime}}</span></div>
+                            <div class="art-item">
+                                <a class="art-link" v-bind:href="artli.article.arthref">
+                                    <img v-bind:src="artli.article.artbg" alt="">
+                                    <div class="overlay">
+                                        <div class="artct">
+                                            <span class="artct-tit">{{artli.article.arttit}}</span>
+                                            <p class="artct-sub">{{artli.article.artsub}}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <i class="arrow-up art-arrow"></i>
-                            </a>
-                            <div class="art-mvs">
-                                <div class="pd-cells-wrap">
-                                    <div class="pd-cells noscrollbar">
-                                        <span class="mv-list">
-                                            <a class="pd-cell ckeffect" v-for="mvcell in artli.movie" v-bind:href="mvcell.mvhref" target="_self">
-                                                <div class="pd-pic">
-                                                    <img class="pd-img" v-bind:src="mvcell.mvbg" alt="" v-show="isValidHref(mvcell.mvbg)">
-                                                    <div class="overlay center-h">
-                                                        <i class="icon-play_circle_outline" v-show="isValidHref(mvcell.mvhref)"></i>
+                                    <i class="arrow-up art-arrow"></i>
+                                </a>
+                                <div class="art-mvs">
+                                    <div class="pd-cells-wrap">
+                                        <div class="pd-cells noscrollbar">
+                                            <span class="mv-list">
+                                                <a class="pd-cell ckeffect" v-for="mvcell in artli.movie" v-bind:href="mvcell.mvhref" target="_self">
+                                                    <div class="pd-pic">
+                                                        <img class="pd-img" v-bind:src="mvcell.mvbg" alt="" v-show="isValidHref(mvcell.mvbg)">
+                                                        <div class="overlay center-h">
+                                                            <i class="icon-play_circle_outline" v-show="isValidHref(mvcell.mvhref)"></i>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="pd-info">
-                                                    <div class="pd-title">{{mvcell.mvname}}</div>
-                                                    <div class="pd-sub">{{mvcell.mvsub}}</div>
+                                                    <div class="pd-info">
+                                                        <div class="pd-title">{{mvcell.mvname}}</div>
+                                                        <div class="pd-sub">{{mvcell.mvsub}}</div>
+                                                    </div>
+                                                </a>
+                                            </span>
+                                            <a class="pd-cell pd-more" v-bind:href="artli.article.artall" target="_self">
+                                                <div class="pd-pic center-h">
+                                                    <span class="center-con">
+                                                        <i class="icon-movie1"></i><br/>
+                                                        <span>查看全部</span>
+                                                    </span>
                                                 </div>
                                             </a>
-                                        </span>
-                                        <a class="pd-cell pd-more" v-bind:href="artli.article.artall" target="_self">
-                                            <div class="pd-pic center-h">
-                                                <span class="center-con">
-                                                    <i class="icon-movie1"></i><br/>
-                                                    <span>查看全部</span>
-                                                </span>
-                                            </div>
-                                        </a>
+                                        </div>
+                                        <span class="over-scrollbar"></span>
                                     </div>
-                                    <span class="over-scrollbar"></span>
                                 </div>
                             </div>
                         </div>

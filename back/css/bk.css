@@ -18,8 +18,8 @@
 .spbtn:focus,.spbtn:active{color:#8C7551;background:#C2C2C2;border-color:#C2C2C2;}
 /*common*/
 .bgmark{background:#F6F6F6;}
-a.marka{color:#1E52BB;}
-a.marka:hover{color:#8c5957;text-decoration:underline;}
+a.marka{color:#2277E6;}
+a.marka:hover{color:#8C5957;text-decoration:underline;}
 .nav-title{padding:5px 10px;font-size:16px;line-height:26px;background:#C2C2C2;}
 .nav-list li{border-top:1px dashed #E2E2E2;}
 .nav-list li:first-child{border:0 none;}
@@ -64,7 +64,9 @@ a.marka:hover{color:#8c5957;text-decoration:underline;}
 .bkart-table td.col3{font-size:14px;}
 .bkart-mvlist{padding:0 10px;}
 .bkart-mvlist img{height:110px;}
-.bkart-mvli{padding:10px;border-top:1px dashed #C2C2C2;}
+.bkart-mvli{padding:10px;border-top:1px dashed #C2C2C2;white-space:nowrap;}
 .bkart-mvlist .bkart-mvli:first-child{border:0 none;}
-.bkart-mvli>.swbox,.bkart-mvli>img,.bkart-mvli>em{display:inline-block;margin-right:30px;vertical-align:middle;}
-.bkart-mvli>img,.bkart-mvli>em{margin-right:60px;}
+.bkart-mvli>.swbox,.bkart-mvli>img,
+.bkart-mvli>em, .bkart-mvli>a{display:inline-block;margin-right:30px;vertical-align:middle;white-space:normal;}
+.bkart-mvli>em{width:150px;}
+.bkart-mvli>a.marka{max-width:55%;margin:0;}

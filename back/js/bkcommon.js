@@ -96,7 +96,8 @@ function updateMvInArtState(elem, inData){
 //更新影片信息
 function updateMvInfo(inData){
     //必须参数：mvid、resid、mvhref、status (扩展：mvname、remark)
-    inData.resid = (typeof(inData['resid'] === undefined) || isNull(inData['resid'])) ? "" : inData['resid'];
+    inData.resid = ((inData['resid'] === undefined) || isNull(inData['resid'])) ? "" : inData['resid'];
+    inData.mvhref = (isNull(inData['mvhref'])||(inData['mvhref'] == "-")) ? "" : inData['mvhref'];
     //动画
     ajaxAnimShow();
     //提交服务器

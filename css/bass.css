@@ -123,11 +123,11 @@ a, a:-webkit-any-link{color:#666;}
 .slidepanel{position:fixed;background:#FFF;transform:translate3d(0,0,0);
     -webkit-transition:all 300ms ease-in-out;-moz-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out;}
 .slide-v{top:0;z-index:2000;width:300px;height:100%;max-width:90%;overflow:hidden;}
-.slide-right{right:0;-webkit-transform:translate(300px,0);transform:translate(300px,0);}
+.slide-right{right:0;-webkit-transform:translate(100%,0);transform:translate(100%,0);}
 .slide-right.open{right:0;-webkit-transform:translate(0,0);transform:translate(0,0);}
 .slideover.overlay{z-index:1900;background:rgba(0,0,0,0.6);}
 /*鼠标悬浮效果*/
-.ckeffect{-webkit-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out;}
+.ckeffect{-webkit-transition:all 200ms ease-in-out;transition:all 200ms ease-in-out;}
 .ckeffect:hover{background:#FAFAFA;border-color:#FAFAFA;}
 .ckeffect:focus,.ckeffect:active{background:#E2E2E2;border-color:#E2E2E2;}
 [class^="hvr-"], [class*=" hvr-"]{position:relative;-webkit-transform:perspective(1px) translateZ(0);transform:perspective(1px) translateZ(0);}
