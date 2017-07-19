@@ -12,9 +12,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <meta name="apple-touch-fullscreen" content="yes"/>
     <meta name="renderer" content="webkit"/>
-    <meta name="description" content="bilifun"/>
-    <meta name="keywords" content="bilifun"/>
-    <title>bilifun</title>
+    <meta name="keywords" content="BiliFun,独立鱼电影,毒舌电影,Sir电影,虹膜,电影资源,电影公众号"/>
+    <meta name="description" content="BiliFun - 电影与你不期而遇, 电影公众号在线播放"/>
+    <title>BiliFun - 电影与你不期而遇(・ω・)ノ- (゜-゜)つロ</title>
     <link type="image/x-icon" href="img/favicon.ico" rel="shortcut icon"/>
     <link type="text/css" href="static/vendor/weui/weui.min.css" rel="stylesheet"/>
     <link type="text/css" href="static/vendor/animate/animate.min.css" rel="stylesheet"/>
@@ -22,75 +22,73 @@
     <link type="text/css" href="css/bass.css" rel="stylesheet"/>
     <link type="text/css" href="css/vh.css" rel="stylesheet"/>
 </head>
-<body>
-    <div class="sl-wrap vh-case" id="vhCase">
-        <div class="sl-hd nav-fix">
-            <div class="slhd-con maxw">
-                <a href="javascript:history.go(-1);" class="slhd-back"><i class="icon-arrow_back"></i></a>
-                <div class="slhd-title" id="hdTitle"></div>
-            </div>
+<body class="vh-case" id="vhCase">
+    <div class="sl-hd nav-fix">
+        <div class="slhd-con maxw">
+            <a href="javascript:history.go(-1);" class="slhd-back"><i class="icon-arrow_back"></i></a>
+            <div class="slhd-title" id="hdTitle"></div>
         </div>
-        <div class="sl-bd nopadb">
-            <div class="case-body maxw">
-                <!--顶部-->
-                <div class="case-tphd" id="caseTpHd">
-                    <div class="tp-link">
-                        <img class="tpbg-img" id="caseTpBgImg" src="" alt="">
-                        <div class="overlay center-h allh">
-                            <span class="tpct">
-                                <span class="tpct-tit" id="accName"></span>
-                                <span class="tpct-sub" id="accSub"></span>
-                            </span>
-                        </div>
+    </div>
+    <div class="sl-bd nopadb">
+        <div class="case-body maxw" id="caseBody">
+            <!--顶部-->
+            <div class="case-tphd" id="caseTpHd">
+                <div class="tp-link">
+                    <img class="tpbg-img" id="caseTpBgImg" src="" alt="">
+                    <div class="overlay center-h allh">
+                        <span class="tpct">
+                            <span class="tpct-tit" id="accName"></span>
+                            <span class="tpct-sub" id="accSub"></span>
+                        </span>
                     </div>
                 </div>
-                <!--内容-->
-                <div class="case-tpcon">
-                    <div class="tpart-hd">
-                        <i class="icon-file-text2 vhcolor"></i>最新文章
-                    </div>
-                    <div class="tpart-bd">
-                        <div class="art-plate" v-for="artli in list">
-                            <div class="art-time" v-show="isShowArtTime(artli.article.arttime)"><span>{{artli.article.arttime}}</span></div>
-                            <div class="art-item">
-                                <a class="art-link" v-bind:href="artli.article.arthref">
-                                    <img v-bind:src="artli.article.artbg" alt="">
-                                    <div class="overlay">
-                                        <div class="artct">
-                                            <span class="artct-tit">{{artli.article.arttit}}</span>
-                                            <p class="artct-sub">{{artli.article.artsub}}</p>
-                                        </div>
+            </div>
+            <!--内容-->
+            <div class="case-tpcon">
+                <div class="tpart-hd">
+                    <i class="icon-file-text2 vhcolor"></i>最新文章
+                </div>
+                <div class="tpart-bd">
+                    <div class="art-plate" v-for="artli in list">
+                        <div class="art-time" v-show="isShowArtTime(artli.article.arttime)"><span>{{artli.article.arttime}}</span></div>
+                        <div class="art-item">
+                            <a class="art-link" v-bind:href="artli.article.arthref">
+                                <img v-bind:src="artli.article.artbg" alt="">
+                                <div class="overlay">
+                                    <div class="artct">
+                                        <span class="artct-tit">{{artli.article.arttit}}</span>
+                                        <p class="artct-sub">{{artli.article.artsub}}</p>
                                     </div>
-                                    <i class="arrow-up art-arrow"></i>
-                                </a>
-                                <div class="art-mvs">
-                                    <div class="pd-cells-wrap">
-                                        <div class="pd-cells noscrollbar">
-                                            <span class="mv-list">
-                                                <a class="pd-cell ckeffect" v-for="mvcell in artli.movie" v-bind:href="mvcell.mvhref" target="_self">
-                                                    <div class="pd-pic">
-                                                        <img class="pd-img" v-bind:src="mvcell.mvbg" alt="" v-show="isValidHref(mvcell.mvbg)">
-                                                        <div class="overlay center-h">
-                                                            <i class="icon-play_circle_outline" v-show="isValidHref(mvcell.mvhref)"></i>
-                                                        </div>
+                                </div>
+                                <i class="arrow-up art-arrow"></i>
+                            </a>
+                            <div class="art-mvs">
+                                <div class="pd-cells-wrap">
+                                    <div class="pd-cells noscrollbar">
+                                        <span class="mv-list">
+                                            <a class="pd-cell ckeffect" v-for="mvcell in artli.movie" v-bind:href="mvcell.mvhref" target="_self">
+                                                <div class="pd-pic">
+                                                    <img class="pd-img" v-bind:src="mvcell.mvbg" alt="" v-show="isValidHref(mvcell.mvbg)">
+                                                    <div class="overlay center-h">
+                                                        <i class="icon-play_circle_outline" v-show="isValidHref(mvcell.mvhref)"></i>
                                                     </div>
-                                                    <div class="pd-info">
-                                                        <div class="pd-title">{{mvcell.mvname}}</div>
-                                                        <div class="pd-sub">{{mvcell.mvsub}}</div>
-                                                    </div>
-                                                </a>
-                                            </span>
-                                            <a class="pd-cell pd-more" v-bind:href="artli.article.artall" target="_self">
-                                                <div class="pd-pic center-h">
-                                                    <span class="center-con">
-                                                        <i class="icon-movie1"></i><br/>
-                                                        <span>查看全部</span>
-                                                    </span>
+                                                </div>
+                                                <div class="pd-info">
+                                                    <div class="pd-title">{{mvcell.mvname}}</div>
+                                                    <div class="pd-sub">{{mvcell.mvsub}}</div>
                                                 </div>
                                             </a>
-                                        </div>
-                                        <span class="over-scrollbar"></span>
+                                        </span>
+                                        <a class="pd-cell pd-more" v-bind:href="artli.article.artall" target="_self">
+                                            <div class="pd-pic center-h">
+                                                <span class="center-con">
+                                                    <i class="icon-movie1"></i><br/>
+                                                    <span>查看全部</span>
+                                                </span>
+                                            </div>
+                                        </a>
                                     </div>
+                                    <span class="over-scrollbar"></span>
                                 </div>
                             </div>
                         </div>
@@ -98,18 +96,18 @@
                 </div>
             </div>
         </div>
-        <!--加载动画-->
-        <div class="loadanim" id="loadBox"></div>
-        <!--返回顶部 start-->
-        <div class="sl-ft-aside maxw">
-            <div class="sl-aside-fix">
-                <a class="gotop gohide" id="goTop" title="返回顶部">
-                    <i class="icon-arrow-up3"></i>
-                </a>
-            </div>
-        </div>
-        <!--返回顶部 end-->
     </div>
+    <!--加载动画-->
+    <div class="loadanim" id="loadBox"></div>
+    <!--返回顶部 start-->
+    <div class="sl-ft-aside maxw">
+        <div class="sl-aside-fix">
+            <a class="gotop gohide" id="goTop" title="返回顶部">
+                <i class="icon-arrow-up3"></i>
+            </a>
+        </div>
+    </div>
+    <!--返回顶部 end-->
     <script type="text/javascript" src="static/vendor/jquery/jquery-1.11.0.min.js" charset="UTF-8"></script>
     <script type="text/javascript" src="static/vendor/vue/vue.min.js" charset="UTF-8"></script>
     <script type="text/javascript" src="script/common.js" charset="UTF-8"></script>

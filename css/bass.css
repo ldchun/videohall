@@ -2,7 +2,7 @@
 /*reset*/
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,menu,nav,section{margin:0;padding:0;}
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,iframe{display:block;}
-body{max-width:1920px;margin:0 auto;font-family:'微软雅黑',"Microsoft YaHei";color:#333;background:#FFF;}
+body{max-width:1920px;margin:0 auto;font-family:'微软雅黑',"Microsoft YaHei";color:#333;}
 ul,ol,dl{list-style:none;}
 a,a:visited,a:link,a:hover{text-decoration:none;}
 address,cite,dfn,em,b,i{font-style:normal;font-weight:normal;}
@@ -38,6 +38,8 @@ a, a:-webkit-any-link{color:#666;}
 .marktxt{font-weight:bold;color:#2277E6;}
 .allw{width:100%;}
 .allh{height:100%;}
+/*开启硬件加速*/
+.speedup{-webkit-transform:translateZ(0);-moz-transform:translateZ(0);-ms-transform:translateZ(0);-o-transform:translateZ(0);transform:translateZ(0);}
 /*垂直居中*/
 .center-h{font-size:0;text-align:center;}
 .center-h.allh{height:100%;}
@@ -51,7 +53,7 @@ a, a:-webkit-any-link{color:#666;}
 .sl-hd.nav-fix,.sl-ft.nav-fix{position:fixed;left:0;width:100%;}
 .sl-hd.nav-fix{top:0;}
 .sl-ft.nav-fix{bottom:0;}
-.sl-bd{position:relative;padding-bottom:20px;}
+.sl-bd{position:relative;}
 .sl-hd.nav-fix + .sl-bd{padding-top:45px;}
 .nopadb,.sl-bd.nopadb{padding-bottom:0;}
 .slhd-title{margin:0 50px;font-size:18px;line-height:46px;color:#333;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -120,7 +122,7 @@ a, a:-webkit-any-link{color:#666;}
 .gotop.goout{filter:alpha(opacity=0);-moz-opacity:0;opacity:0;bottom:-50px;-webkit-transform:none;transform:none;}
 .gotop.gohide{filter:alpha(opacity=0);-moz-opacity:0;opacity:0;}
 /*sidepanel*/
-.slidepanel{position:fixed;background:#FFF;transform:translate3d(0,0,0);
+.slidepanel{position:fixed;background:#FFF;-webkit-transform:translateZ(0);transform:translateZ(0);
     -webkit-transition:all 300ms ease-in-out;-moz-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out;}
 .slide-v{top:0;z-index:2000;width:300px;height:100%;max-width:90%;overflow:hidden;}
 .slide-right{right:0;-webkit-transform:translate(100%,0);transform:translate(100%,0);}

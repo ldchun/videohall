@@ -1,7 +1,7 @@
 @charset "utf-8";
 /*sp*/
 .sp-hd,.sp-ft{position:relative;z-index:999;background:#FFF;}
-.sp-hd{min-height:60px;border-bottom:1px solid #E2E2E2;}
+.sp-hd{min-height:60px;border-bottom:1px solid #E2E2E2;line-height:60px;}
 .sp-ft{min-height:60px;border-top:1px solid #E2E2E2;}
 .sphd-con,.spft-con{position:relative;height:100%;}
 .sp-hd.nav-fix,.sp-ft.nav-fix{position:fixed;left:0;width:100%;}

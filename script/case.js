@@ -9,7 +9,7 @@ var tmpArtTime = false;
 //数据初始化
 function vueAppInit(){
     vueApp = new Vue({
-        el: '#vhCase',
+        el: '#caseBody',
         data: {
             "list": [
                 {
