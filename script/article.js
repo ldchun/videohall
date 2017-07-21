@@ -36,7 +36,6 @@ function loadData(){
     var inData = getInData();
     $.ajax({
         type: "get",
-        // url: "server/article.json",
         url: articleAjaxUrl + inData.artid,
         data: "",
         dataType: "jsonp",
@@ -139,7 +138,6 @@ function loadMovie(){
     var inData = getInData();
     $.ajax({
         type: "get",
-        // url: "server/video.json",
         url: moviesAjaxUrl + inData.artid,
         data: "",
         dataType: "jsonp",

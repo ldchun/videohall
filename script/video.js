@@ -46,7 +46,6 @@ function loadVideoList(){
     var inData = getInData();
     $.ajax({
         type: "get",
-        // url: "server/video.json",
         url: moviesAjaxUrl + inData.artid,
         data: "",
         dataType: "jsonp",
