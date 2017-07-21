@@ -1,7 +1,7 @@
 /**
  * Created by chun on 2017/6/12.
  */
-var htmlUrlBase = "http://10.111.123.7:8680/www/videohall/";
+var htmlUrlBase = "http://www.bilifun.co/";
 var mUrlBase = "http://198.12.149.92:9000/";
 /**** 功能Api ****/
 var getimgUrl = mUrlBase + "img/";
@@ -17,11 +17,7 @@ var backMagUrl = mUrlBase + "manager/";
 var articleUrl =  htmlUrlBase+ "article.html?artid=";
 //推荐背景
 var accountBgArr = [
-    "images/home/bg-dly.jpg",
-    "images/home/bg-sir.jpg",
-    "images/home/bg-kddy.jpg",
-    "images/home/bg-xmt.jpg",
-    "images/home/bg-yzdy.jpg"
+    "images/bg-dly.jpg", "images/bg-sir.jpg", "images/bg-kddy.jpg", "images/bg-xmt.jpg", "images/bg-yzdy.jpg"
 ];
 /************ 自定义常用函数 *************/
 

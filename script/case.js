@@ -60,7 +60,6 @@ function loadData(){
     var inData = getInData();
     $.ajax({
         type: "get",
-        // url: "server/case.json",
         url: caseAjaxUrl + inData.uid,
         data: "",
         dataType: "jsonp",

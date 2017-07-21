@@ -3,6 +3,9 @@
  */
 var vueApp;
 var caseHref = "case.html?uid=";
+var accountLogoArr = [
+    "images/logo-duliyu.jpg", "images/logo-sir.jpg", "images/logo-hm.jpg"
+];
 //数据初始化
 function vueAppInit(){
     vueApp = new Vue({
@@ -26,7 +29,6 @@ $(document).ready(function(){
 function loadTpList(){
     $.ajax({
         type: "get",
-        // url: "server/home.json",
         url: accountAjaxUrl,
         data: "",
         dataType: "jsonp",
@@ -36,12 +38,19 @@ function loadTpList(){
             var jsonData = eval(data);
             var dataArr = jsonData['tp'];
             for(var i=0, arrSize=dataArr.length; i<arrSize; i++){
-                dataArr[i]['logo'] = getimgUrl + dataArr[i]['logo'];
+                //logo
+                // dataArr[i]['logo'] = getimgUrl + dataArr[i]['logo'];
+                var logoIndex = i;
+                if(logoIndex >= accountLogoArr.length){
+                    bgIndex = accountLogoArr[getRandom(0, accountLogoArr.length-1)];
+                }
+                dataArr[i]['logo'] = accountLogoArr[logoIndex];
+                //bg
                 var bgIndex = i;
-                    if(bgIndex >= accountBgArr.length){
-                        bgIndex = accountBgArr[getRandom(0, accountBgArr.length-1)];
-                    }
-                    dataArr[i]['bg'] = accountBgArr[bgIndex];
+                if(bgIndex >= accountBgArr.length){
+                    bgIndex = accountBgArr[getRandom(0, accountBgArr.length-1)];
+                }
+                dataArr[i]['bg'] = accountBgArr[bgIndex];
                 var tmpHref = String(dataArr[i]['href']);
                 var strArr = tmpHref.split("/");
                 var theUid = strArr[strArr.length-1];
