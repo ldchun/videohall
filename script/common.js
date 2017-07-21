@@ -2,7 +2,7 @@
  * Created by chun on 2017/6/12.
  */
 var htmlUrlBase = "http://10.111.123.7:8680/www/videohall/";
-var mUrlBase = "http://10.111.123.8:9000/";
+var mUrlBase = "http://198.12.149.92:9000/";
 /**** 功能Api ****/
 var getimgUrl = mUrlBase + "img/";
 var loadimgUrl = "http://www.webls.cn/server/loadimg.php?imgurl=";
@@ -321,6 +321,11 @@ function handleMovieData(data){
 //判断是否为有效链接
 function isValidHref(str){
     return (isString(str) && (str != ''));
+}
+//显示加载动画
+function loadAnimShow(){
+    var $loadElem = $("#loadBox");
+    $loadElem.stop().show();
 }
 //隐藏加载动画
 function loadAnimHide(){

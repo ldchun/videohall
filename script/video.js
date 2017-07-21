@@ -19,7 +19,7 @@ vueAppInit();
 //初始化
 $(document).ready(function(){
     //加载列表
-    loadVideoList();
+    loadData();
 });
 //获取参数
 function getInData(){
@@ -33,11 +33,17 @@ function getInData(){
     inData.arttit = fatUndef(hrefPara['arttit']);
     return inData;
 }
-//视频列表
-function loadVideoList(){
+
+function loadData(){
     var inData = getInData();
     //設置文章标题
     document.getElementById("hdTitle").innerHTML = inData['arttit'];
+    //加载列表
+    loadVideoList();
+}
+//视频列表
+function loadVideoList(){
+    var inData = getInData();
     $.ajax({
         type: "get",
         // url: "server/video.json",
@@ -45,7 +51,7 @@ function loadVideoList(){
         data: "",
         dataType: "jsonp",
         jsonp: "callback",
-        jsonpCallback: "jsonpback",
+        // jsonpCallback: "jsonpback",
         success:function(data){
             var jsonData = eval(data);
             var dataArr = jsonData['data'];
