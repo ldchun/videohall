@@ -39,12 +39,11 @@ function loadTpList(){
             var dataArr = jsonData['tp'];
             for(var i=0, arrSize=dataArr.length; i<arrSize; i++){
                 //logo
-                // dataArr[i]['logo'] = getimgUrl + dataArr[i]['logo'];
-                var logoIndex = i;
-                if(logoIndex >= accountLogoArr.length){
-                    bgIndex = accountLogoArr[getRandom(0, accountLogoArr.length-1)];
+                if(i >= accountLogoArr.length){
+                    dataArr[i]['logo'] = getimgUrl + dataArr[i]['logo'];
+                }else{
+                    dataArr[i]['logo'] = accountLogoArr[i];
                 }
-                dataArr[i]['logo'] = accountLogoArr[logoIndex];
                 //bg
                 var bgIndex = i;
                 if(bgIndex >= accountBgArr.length){
