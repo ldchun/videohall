@@ -29,7 +29,6 @@ a, a:-webkit-any-link{color:#666;}
 .overlay{position:absolute;z-index:10;left:0;top:0;width:100%;height:100%;color:#FFF;background:rgba(0,0,0,0.3);
     background: transparent\9;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3D000000,endColorstr=#3D000000);}
 .overbox{position:absolute;z-index:10;left:0;top:0;right:0;bottom:0;}
-.loadanim{position:fixed;z-index:100;left:0;top:0;right:0;bottom:0;background:#FFF url("../img/load.gif") no-repeat center;}
 .nobd{border:0 none;}
 .linka, a.linka{color:#2277E6;}
 .linka:hover, a.linka:hover{text-decoration:underline;}
@@ -38,6 +37,23 @@ a, a:-webkit-any-link{color:#666;}
 .marktxt{font-weight:bold;color:#2277E6;}
 .allw{width:100%;}
 .allh{height:100%;}
+/*loading*/
+.loadanim{position:fixed;z-index:100;left:0;top:0;right:0;bottom:0;font-size:0;text-align:center;background:#FFF no-repeat center;}
+.loadanim>span{display:inline-block;vertical-align:middle;}
+.loadanim:after{content:'';display:inline-block;width:0;height:100%;opacity:0;vertical-align:middle;}
+@-webkit-keyframes turn-circle {
+    0% {-webkit-transform: rotate(0deg);transform:rotate(0deg);}
+    100% {-webkit-transform: rotate(360deg);transform: rotate(360deg);}
+}
+@keyframes turn-circle {
+    0% {-webkit-transform: rotate(0deg);transform:rotate(0deg);}
+    100% {-webkit-transform: rotate(360deg);transform: rotate(360deg);}
+}
+.loader-spinner{display:inline-block;position:relative;width:40px;height:40px;border: 3px solid #2277E6;
+    border-right-color: transparent;border-radius:100%;background:#FFF;overflow:hidden;
+    -webkit-animation: turn-circle 1000ms infinite linear;-moz-animation: turn-circle 1000ms infinite linear;
+    animation: turn-circle 1000ms infinite linear;
+}
 /*开启硬件加速*/
 .speedup{-webkit-transform:translateZ(0);-moz-transform:translateZ(0);-ms-transform:translateZ(0);-o-transform:translateZ(0);transform:translateZ(0);}
 /*垂直居中*/
