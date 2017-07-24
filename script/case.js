@@ -220,7 +220,7 @@ function loadMore(){
             var scrollTop  = document.body.scrollTop || document.documentElement.scrollTop;
             var contentH = $('body').height();
             var offH = contentH - self.windowH - scrollTop;
-            if((offH > 0) && (offH <= self.threshold)){
+            if(offH <= self.threshold){
                 self.getdata();
             }
         });
