@@ -6,6 +6,11 @@ var videoHref = "video.html?artid=";
 var articleHref = "article.html?artid=";
 var tmpUid;
 var tmpArtTime = false;
+var pagePara = {
+    pageCount: 0,
+    pageSize: 3
+};
+var loadFn = new loadMore();
 //数据初始化
 function vueAppInit(){
     vueApp = new Vue({
@@ -27,8 +32,6 @@ function vueAppInit(){
 vueAppInit();
 //初始化
 $(document).ready(function(){
-    //加载信息
-    loadData();
     //页面滚动
     $(window).on("scroll", function (){
         //顶部背景显现
@@ -42,6 +45,8 @@ $(document).ready(function(){
         (thisTop < nohdH) ? $vhCase.addClass(nohd) : $vhCase.removeClass(nohd);
         (thisTop < nohdtitH) ? $vhCase.addClass(nohdtit) : $vhCase.removeClass(nohdtit);
     });
+    //加载列表
+    loadFn.init();
 });
 //获取参数
 function getInData(){
@@ -58,24 +63,38 @@ function getInData(){
 //获取信息
 function loadData(){
     var inData = getInData();
+    inData.pageStart = pagePara.pageCount++ * pagePara.pageSize;
+    inData.pageSize = pagePara.pageSize;
     $.ajax({
         type: "get",
         url: caseAjaxUrl + inData.uid,
-        data: "",
+        data: inData,
         dataType: "jsonp",
         jsonp: "callback",
-        jsonpCallback: "jsonpback",
+        // jsonpCallback: "jsonpback",
         success:function(data){
             var jsonData = eval(data);
             //第三方信息
-            loadAccount(jsonData['data']['account']);
-            //列表
-            loadArtList(jsonData['data']['list']);
+            if(inData.pageStart <= 0){
+                loadAccount(jsonData['data']['account']);
+            }
+            //文章列表
+            var listArr = jsonData['data']['list'];
+            if(listArr.length > 0){
+                //列表
+                loadArtList(listArr);
+                //恢复状态
+                loadFn.reset();
+            }else{
+                //加载结束关闭
+                loadFn.close();
+            }
             //关闭加载动画
             loadAnimHide();
         },
         error:function(error){
             console.log(error);
+            loadFn.reset();
         }
     });
 }
@@ -116,13 +135,23 @@ function handleArtTime(time){
 function isShowArtTime(time){
     return (time != false);
 }
+//转换文章背景图片
+function fatArtBg(src){
+    var artBg = "";
+    if((src.indexOf("http") == 0) || (src.indexOf("https") == 0)){
+        artBg = src;
+    }else{
+        artBg = getimgUrl + src;
+    }
+    return artBg;
+}
 //列表
 function loadArtList(data){
     var dataArr = data;
     for(var i=0, arrSize=dataArr.length; i<arrSize; i++){
         dataArr[i]['article']['arthref'] = articleHref + dataArr[i]['article']['artid'];
         dataArr[i]['article']['artall']  = videoHref + dataArr[i]['article']['artid']+"&arttit="+decodeURI(dataArr[i]['article']['arttit']);
-        dataArr[i]['article']['artbg']   = getimgUrl + dataArr[i]['article']['artbg'];
+        dataArr[i]['article']['artbg']   = fatArtBg(dataArr[i]['article']['artbg']);
         //时间
         var strArtTime = handleArtTime(dataArr[i]['article']['arttime']);
         if(tmpArtTime != strArtTime){
@@ -133,4 +162,88 @@ function loadArtList(data){
         }
     }
     vueApp.list = vueApp.list.concat(dataArr);
+}
+
+//加载更多
+function loadMore(){
+    this.el = "#caseBody";
+    this.windowH = $(window).height();
+    this.threshold = 100;
+    this.loading = false;
+    this.islock = false;
+    this.timer = "";
+    this.elem = this.el.slice(1);
+    this.loadfunc = loadData;
+    this.reset = function(){
+        this.islock = false;
+        this.loading = false;
+        this.loadtip(false);
+    };
+    this.close = function(){
+        if(this.timer){clearInterval(this.timer);}
+        this.lock();
+        this.loadtip(0);
+    };
+    this.loadtip = function(flag){
+        var theClass = "finish";
+        var $tipElem = $("#loadMoreTip");
+        switch(flag){
+            case 1:
+                $tipElem.show().removeClass(theClass);
+                break;
+            case 0:
+                $tipElem.show().addClass(theClass);
+                break;
+            default:
+                $tipElem.hide();
+        }
+    };
+    this.lock = function(){
+        this.islock = true;
+    };
+    this.unlock = function(){
+        this.islock = false;
+    };
+    this.getdata = function(){
+        this.loadtip(1);
+        if(!this.loading && !this.islock){
+            this.loading = true;
+            this.loadfunc();
+        }
+    };
+    this.scroll = function(){
+        var self = this;
+        //注册滚动
+        $(window).on('scroll', function(){
+            if(self.timer){clearInterval(self.timer);}
+            if(self.loading || self.islock){return ;}
+            var scrollTop  = document.body.scrollTop || document.documentElement.scrollTop;
+            var contentH = $('body').height();
+            var offH = contentH - self.windowH - scrollTop;
+            if((offH > 0) && (offH <= self.threshold)){
+                self.getdata();
+            }
+        });
+    };
+    this.launch = function(){
+        var self = this;
+        var checkBottom = function(){
+            if(self.loading || self.islock){return ;}
+            var scrollTop  = document.body.scrollTop || document.documentElement.scrollTop;
+            var contentH = $('body').height();
+            var offH = contentH - self.windowH - scrollTop;
+            if(offH <= 0){
+                self.getdata();
+            }else{
+                if(self.timer){clearInterval(self.timer);}
+            }
+        };
+        this.timer = setInterval(checkBottom, 1000);
+        checkBottom();
+    };
+    this.init = function(){
+        this.reset();
+        this.launch();
+        this.scroll();
+    };
 }
