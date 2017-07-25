@@ -94,7 +94,7 @@ function updateMvInArtState(elem, inData){
     });
 }
 //更新影片信息
-function updateMvInfo(inData){
+function updateMvInfo(inData, callfun){
     //必须参数：mvid、resid、mvhref、status (扩展：mvname、remark)
     inData.resid = ((inData['resid'] === undefined) || isNull(inData['resid'])) ? "" : inData['resid'];
     inData.mvhref = (isNull(inData['mvhref'])||(inData['mvhref'] == "-")) ? "" : inData['mvhref'];
@@ -115,8 +115,9 @@ function updateMvInfo(inData){
             if(res){
                 layer.closeAll('page');
                 layer.msg('保存成功！', {icon: 1, time: 1000});
-                //提交查询
-                inSubmit();
+                if(typeof(callfun) != "undefined"){
+                    callfun();
+                }
             }
             else{
                 var msg = jsonData['message'];
@@ -132,7 +133,7 @@ function updateMvInfo(inData){
 }
 
 //快速修改影片地址
-function fastUpdateMvHref(elem, inData){
+function fastUpdateMvHref(elem, inData, callfun){
     var $elem = $(elem);
     $elem.editable({
         toggle: "mouseenter",
@@ -152,7 +153,7 @@ function fastUpdateMvHref(elem, inData){
             }
             //更新影片地址
             inData.mvhref = tmpVal;
-            updateMvInfo(inData);
+            updateMvInfo(inData, callfun);
         }
     });
 }

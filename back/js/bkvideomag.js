@@ -3,6 +3,7 @@
  */
 var tableIdArr;
 var tableDataArr;
+var curPageStart = 0;
 //加载页面
 function loadhtml(){
     //时间选择
@@ -10,7 +11,10 @@ function loadhtml(){
     //公众号列表
     AccList({callback: inSubmit});
     //查询
-    $("#inSubmit").on('click', inSubmit);
+    $("#inSubmit").on('click', function(){
+        curPageStart = 0;
+        inSubmit();
+    });
     //窗口大小调整
     $(window).on('resize', function(){
         setTimeout(function(){
@@ -41,6 +45,7 @@ function getInData(params){
         inData.pageStart = params.offset;
         inData.sortName  = params.sort;
         inData.sortOrder = params.order;
+        curPageStart = inData.pageStart;
     }
     return inData;
 }
@@ -204,7 +209,10 @@ function tableFun(){
                         remark: dataRow["remark"]
                     };
                     //更新影片地址
-                    fastUpdateMvHref(this, inData)
+                    fastUpdateMvHref(this, inData, function(){
+                        //刷新到修改页
+                        $tableElem.bootstrapTable('refreshOptions',{pageStart: curPageStart});
+                    });
                 });
             },
             onExpandRow: function(index, row, $detail){
