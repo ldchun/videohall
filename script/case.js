@@ -175,7 +175,6 @@ function loadMore(){
     this.elem = this.el.slice(1);
     this.loadfunc = loadData;
     this.reset = function(){
-        this.islock = false;
         this.loading = false;
         this.loadtip(false);
     };
@@ -242,6 +241,7 @@ function loadMore(){
         checkBottom();
     };
     this.init = function(){
+        this.unlock();
         this.reset();
         this.launch();
         this.scroll();
